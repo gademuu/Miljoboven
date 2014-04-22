@@ -24,7 +24,7 @@ public abstract class BaseDAO {
               
               
         } catch(IOException ex){ 
-            ex.printStackTrace(); 
+            
             // TODO throw exception 
         }  
           
