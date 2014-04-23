@@ -1,12 +1,12 @@
-package logic;
+package logic.cases;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import backend.Case;
-import backend.CaseDAO;
+import backend.cases.Case;
+import backend.cases.CaseDAO;
 import client.RegisterCaseListener;
 import client.RegisterCaseViewSetter;
 
