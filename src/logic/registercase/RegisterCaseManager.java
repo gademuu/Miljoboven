@@ -1,4 +1,4 @@
-package logic.cases;
+package logic.registercase;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 import backend.cases.Case;
 import backend.cases.CaseDAO;
-import client.RegisterCaseListener;
-import client.RegisterCaseViewSetter;
+import client.registercase.RegisterCaseListener;
+import client.registercase.RegisterCaseViewSetter;
 
 public class RegisterCaseManager implements RegisterCaseListener {
 	

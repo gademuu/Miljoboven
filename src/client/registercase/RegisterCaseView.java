@@ -1,4 +1,4 @@
-package client;
+package client.registercase;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import logic.cases.RegisterCaseManager;
+import logic.registercase.RegisterCaseManager;
 
 import java.awt.Font;
 import java.util.GregorianCalendar;
