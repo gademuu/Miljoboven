@@ -3,6 +3,7 @@ package logic;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 import backend.Case;
 import backend.CaseDAO;
@@ -15,21 +16,19 @@ public class RegisterCaseManager implements RegisterCaseListener {
 	private RegisterCaseViewSetter registerCaseViewSetter;
 	
 	
-	
 	public RegisterCaseManager(RegisterCaseViewSetter registerCaseViewSetter){
 		this.registerCaseViewSetter = registerCaseViewSetter;
 		registerCaseViewSetter.setRegisterCaseListener(this);
 		
 	}
 	
-	public void okButtonPressed(String dateOfCrime,  String nameOfCoordinator, String typeOfCrime, String locationOfCrime, 
+	public void okButtonPressed(Date dateOfCrime,  String nameOfCoordinator, String typeOfCrime, String locationOfCrime, 
 			String comments, String nameOfReporter, String addressOfReporter, String phoneOfReporter){
 		
 		Case c = new Case();
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(2014, 04, 22);  
+		
 	        c.setDateOfReport(new Date()); 
-	        c.setDateOfCrime(gc.getTime()); 
+	        c.setDateOfCrime(dateOfCrime); 
 	        c.setNameOfCoordinator(nameOfCoordinator); 
 	        c.setTypeOfCrime(typeOfCrime); 
 	        c.setLocationOfCrime(locationOfCrime); 
@@ -42,8 +41,21 @@ public class RegisterCaseManager implements RegisterCaseListener {
 		
 	}
 	
+	public static void main(String[] args){
+		
+		
+		/*Scanner scanner = new Scanner("2014-04-23");
+		scanner.useDelimiter("-");
+		 while (scanner.hasNext()) {
+                String year = scanner.next();
+                String month= scanner.next();
+                String date = scanner.next();
+               System.out.println(year + " "  + month + " " + date);
+            }*/
+	}
 	
+}
 	
 	
 
-}
+

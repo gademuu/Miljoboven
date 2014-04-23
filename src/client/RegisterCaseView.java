@@ -17,8 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import logic.RegisterCaseManager;
-import java.awt.Font;
 
+import java.awt.Font;
+import java.util.GregorianCalendar;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class RegisterCaseView extends JFrame implements RegisterCaseViewSetter{
@@ -45,6 +47,7 @@ public class RegisterCaseView extends JFrame implements RegisterCaseViewSetter{
 				try {
 					RegisterCaseView frame = new RegisterCaseView();
 					RegisterCaseManager registerCaseManager = new RegisterCaseManager(frame);
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,9 +76,52 @@ public class RegisterCaseView extends JFrame implements RegisterCaseViewSetter{
 		JButton btnOkej = new JButton("Okej");
 		btnOkej.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				registerCaseListener.okButtonPressed(tf_datumForBrott.getText(), tf_handlaggare.getText(),
+				GregorianCalendar cal = null;
+				try{
+				Scanner scanner = new Scanner(tf_datumForBrott.getText());
+				scanner.useDelimiter("-");
+				
+				String year = null;
+				String month = null;
+				String date = null;
+				
+				 while (scanner.hasNext()) {
+		                 year = scanner.next();
+		                 month= scanner.next();
+		                 date = scanner.next();   
+		            }
+				 
+				
+				
+					cal = new GregorianCalendar(new Integer(year).intValue(), new Integer(month).intValue(), new Integer(date).intValue());
+					
+				}catch(NumberFormatException nfe){
+					//TODO 
+					//Add dialouge for desplaying date error
+					System.out.println("FEL DATUM!");
+					return;
+				}catch(IllegalStateException ise){
+					//TODO 
+					//Add dialouge for desplaying date error
+					System.out.println("Fel state");
+					return;
+					
+				}catch(NoSuchElementException nsee){
+					//TODO 
+					//Add dialouge for desplaying date error
+					System.out.println("Inget element");
+					return;
+					
+				}
+				
+				
+				registerCaseListener.okButtonPressed(cal.getTime(), tf_handlaggare.getText(),
 						tf_typAvBrott.getText(), tf_platsForBrott.getText(), tf_kommentarer.getText(), tf_namn.getText(), 
 						tf_adress.getText(), tf_telefon.getText() );
+				
+				
+				
+				
 				
 			}
 		});
