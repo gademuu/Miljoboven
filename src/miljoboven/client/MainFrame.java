@@ -4,6 +4,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
+import miljoboven.client.login.LoginListener;
+import miljoboven.client.login.LoginView;
+import miljoboven.client.login.LoginViewActionHandler;
 import miljoboven.client.registercase.RegisterCaseListener;
 import miljoboven.client.registercase.RegisterCaseView;
 import miljoboven.client.registercase.RegisterCaseViewActionHandler;
@@ -17,16 +20,22 @@ import java.awt.event.*;
 
 public class MainFrame extends JFrame {
     
+	//register
     private RegisterCaseView rcView = null;
     private RegisterCaseViewActionHandler rcvHandler = null;
+    //show
     private ShowCaseView scView = null;
     private ShowCaseViewActionHandler scvHandler = null;
+    //login
+    private LoginView lv = null;
+    private LoginViewActionHandler lvHandler = null;
+    
     private CardLayout layout = null;
     
     /**
      * Creates new form MainFrame
      */
-    public MainFrame(RegisterCaseListener rcl) {
+    public MainFrame(RegisterCaseListener rcl, LoginListener ll) {
         super("Miljöboven");
         
         setSize(600,600);
@@ -39,14 +48,26 @@ public class MainFrame extends JFrame {
         setLayout(layout);   
         
         // Set up sub panels and handlers
+        
+        //RegisterCase
         rcvHandler = new RegisterCaseViewActionHandler(this, rcl);
         rcView = new RegisterCaseView(rcvHandler);
         rcvHandler.setView(rcView);
         add(rcView, "REGISTER_CASE_VIEW");
         
+        //ShowCase
         scvHandler = new ShowCaseViewActionHandler(this);
         scView = new ShowCaseView(scvHandler);
         add(scView, "SHOW_CASE_VIEW");
+        
+        //Login
+        lvHandler = new LoginViewActionHandler(this,ll);
+        lv = new LoginView(lvHandler);
+        lvHandler.setView(lv);
+        add(lv, "LOGIN_VIEW");
+        
+        
+        layout.show(getContentPane(), "LOGIN_VIEW");
         
         addWindowListener(new WindowAdapter() {
          @Override

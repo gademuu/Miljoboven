@@ -2,6 +2,7 @@ package miljoboven;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.registercase.RegisterCaseViewSetter;
+import miljoboven.logic.login.LoginManager;
 import miljoboven.logic.registercase.RegisterCaseManager;
 
 public class Miljoboven {
@@ -9,13 +10,15 @@ public class Miljoboven {
 
 	private MainFrame mainFrame = null;
     private RegisterCaseManager rcm = null;
+    private LoginManager lm = null;
 	
 	
     public Miljoboven() { 
 		
 	   //rcm = new RegisterCaseManager(mainFrame.getRegisterCaseViewSetter());
     	rcm = new RegisterCaseManager();
-	    mainFrame = new MainFrame(rcm); 
+    	lm = new LoginManager();
+	    mainFrame = new MainFrame(rcm, lm); 
     } 
       
     public void run() { 

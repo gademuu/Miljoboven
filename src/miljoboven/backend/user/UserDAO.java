@@ -110,9 +110,8 @@ public class UserDAO extends BaseDAO{
 	
 	public static void main(String[] args){
 		UserDAO ud = new UserDAO();
-		/*User u = new User("Herman", "pizza", "admin");
-		User u2 = new User("Isac", "pizza", "admin");
-		User u3 = new User("pontus", "pizza", "admin");*/
+		User u = new User("admin", "admin", "admin");
+		ud.create(u);
 		
 		
 		
@@ -125,11 +124,11 @@ public class UserDAO extends BaseDAO{
 		}
 		*/
 		
-		User[] users = ud.find(new User("Pappa","",""));
+		/*User[] users = ud.find(new User("Arne","",""));
 		
 		for(User apa : users){
 		System.out.println(apa.toString());
-		}
+		}*/
 	}
 	
 }
