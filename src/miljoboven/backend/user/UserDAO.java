@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import miljoboven.backend.BaseDAO;
+import miljoboven.client.Role;
 
 public class UserDAO extends BaseDAO{
 	
@@ -64,9 +65,9 @@ public class UserDAO extends BaseDAO{
 	     
 	     
 	     prop = load(userFile);
-	        String password = (String) prop.get(id);
+	     
 	        //System.out.println(password);
-	        user = new User(id, PASSWORD,ROLE);
+	        user = new User(id, prop.getProperty(PASSWORD),prop.getProperty(ROLE));
 
 	        System.out.println("READ(" + aUser.getName() + "): " + user.toString());
 	        
@@ -110,8 +111,8 @@ public class UserDAO extends BaseDAO{
 	
 	public static void main(String[] args){
 		UserDAO ud = new UserDAO();
-		User u = new User("admin", "admin", "admin");
-		ud.create(u);
+		User a = new User("herman", "pizza", Role.ENHETSCHEF);
+		ud.create(a);
 		
 		
 		

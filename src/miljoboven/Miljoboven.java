@@ -18,7 +18,8 @@ public class Miljoboven {
 	   //rcm = new RegisterCaseManager(mainFrame.getRegisterCaseViewSetter());
     	rcm = new RegisterCaseManager();
     	lm = new LoginManager();
-	    mainFrame = new MainFrame(rcm, lm); 
+	    mainFrame = new MainFrame(rcm, lm);
+	    lm.setLoginSetter(mainFrame);
     } 
       
     public void run() { 

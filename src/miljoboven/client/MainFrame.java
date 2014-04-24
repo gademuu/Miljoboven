@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.border.Border;
 
 import miljoboven.client.login.LoginListener;
+import miljoboven.client.login.LoginSetter;
 import miljoboven.client.login.LoginView;
 import miljoboven.client.login.LoginViewActionHandler;
 import miljoboven.client.registercase.RegisterCaseListener;
@@ -18,8 +19,10 @@ import java.awt.*;
 import java.awt.event.*; 
 
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements LoginSetter{
     
+	private Role loggedInUser = new Role();
+	
 	//register
     private RegisterCaseView rcView = null;
     private RegisterCaseViewActionHandler rcvHandler = null;
@@ -114,15 +117,39 @@ public class MainFrame extends JFrame {
         });
     }
    
-    
+    /**
+     * Returns the layout.
+     */
     public CardLayout getLayout() {
         return layout;
     }
     
+    /**
+     * 
+     * @return
+     */
     public RegisterCaseViewSetter getRegisterCaseViewSetter(){
     	//TODO
     	
     	return null;
+    }
+    
+    /**
+     * 
+     * @returns the logged in User.
+     */
+    public Role getRole(){
+    	return loggedInUser;
+    }
+    
+    /**
+     * Sets the role of the logged in user.
+     * @param role
+     */
+    public void setRole(String role){
+    	
+    	this.loggedInUser.role = role;
+    	
     }
     
     

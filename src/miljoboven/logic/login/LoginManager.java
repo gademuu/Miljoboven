@@ -3,11 +3,13 @@ package miljoboven.logic.login;
 import miljoboven.backend.user.User;
 import miljoboven.backend.user.UserDAO;
 import miljoboven.client.login.LoginListener;
+import miljoboven.client.login.LoginSetter;
 
 public class LoginManager implements LoginListener{
 	
 	private User user;
 	private UserDAO userDAO = new UserDAO();
+	private LoginSetter setter = null;
 	
 	/**
      * Uses the UserDAO method read to see if the user exists and verifies the password. 
@@ -31,12 +33,17 @@ public class LoginManager implements LoginListener{
             user = null;
             System.out.println("Wrong username or password");
         }
-        
+        setter.setRole(user.getRole());
     }
     
     public static void main(String[] args){
     	LoginManager lm = new LoginManager();
     	lm.loginBtnPressed("Herman", "pizza");
+    	
+    }
+    
+    public void setLoginSetter(LoginSetter setter){
+    	this.setter = setter;
     	
     }
 
