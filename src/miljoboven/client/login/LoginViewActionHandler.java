@@ -27,7 +27,7 @@ public class LoginViewActionHandler implements ActionListener {
 	        	listener.loginBtnPressed(view.tf_name.getText(), view.tf_password.getText());
 	        	if(mainFrame.getRole().role.equals(Role.ADMIN)){
 	        		
-	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "SHOW_CASE_VIEW");
+	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_USER_VIEW");
 	            
 	        	}else if(mainFrame.getRole().role.equals(Role.ENHETSCHEF)){
 	        		

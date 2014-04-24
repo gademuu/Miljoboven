@@ -11,15 +11,29 @@ public class User {
 	private String name;
 	private String password;
 	private String role;
+	private String unit;
 	
-	public User(String name, String password, String role) {
+	public User(String name, String password, String role, String unit) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.role = role;
+		this.unit = unit;
 	}
 	
 	
+
+	public String getUnit() {
+		return unit;
+	}
+
+
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+
 
 	public String getName() {
 		return name;
@@ -45,11 +59,16 @@ public class User {
 		this.role = role;
 	}
 
+	
+	
+	@Override
 	public String toString() {
 		return "User [name=" + name + ", password=" + password + ", role="
-				+ role + "]";
+				+ role + ", unit=" + unit + "]";
 	}
-	
+
+
+
 	/**
     *
     * @param password

@@ -12,6 +12,9 @@ import miljoboven.client.registercase.RegisterCaseListener;
 import miljoboven.client.registercase.RegisterCaseView;
 import miljoboven.client.registercase.RegisterCaseViewActionHandler;
 import miljoboven.client.registercase.RegisterCaseViewSetter;
+import miljoboven.client.registeruser.RegisterUserListener;
+import miljoboven.client.registeruser.RegisterUserView;
+import miljoboven.client.registeruser.RegisterUserViewActionHandler;
 import miljoboven.client.showcase.ShowCaseView;
 import miljoboven.client.showcase.ShowCaseViewActionHandler;
 
@@ -23,7 +26,7 @@ public class MainFrame extends JFrame implements LoginSetter{
     
 	private Role loggedInUser = new Role();
 	
-	//register
+	//register case
     private RegisterCaseView rcView = null;
     private RegisterCaseViewActionHandler rcvHandler = null;
     //show
@@ -32,13 +35,16 @@ public class MainFrame extends JFrame implements LoginSetter{
     //login
     private LoginView lv = null;
     private LoginViewActionHandler lvHandler = null;
+    //register user
+    private RegisterUserView ruView = null;
+    private RegisterUserViewActionHandler ruvHandler = null;
     
     private CardLayout layout = null;
     
     /**
      * Creates new form MainFrame
      */
-    public MainFrame(RegisterCaseListener rcl, LoginListener ll) {
+    public MainFrame(RegisterCaseListener rcl, LoginListener ll, RegisterUserListener rul) {
         super("Miljöboven");
         
         setSize(600,600);
@@ -68,6 +74,12 @@ public class MainFrame extends JFrame implements LoginSetter{
         lv = new LoginView(lvHandler);
         lvHandler.setView(lv);
         add(lv, "LOGIN_VIEW");
+        
+        //Register user
+        ruvHandler = new RegisterUserViewActionHandler(this, rul);
+        ruView = new RegisterUserView(ruvHandler);
+        ruvHandler.setView(ruView);
+        add(ruView, "REGISTER_USER_VIEW");
         
         
         layout.show(getContentPane(), "LOGIN_VIEW");

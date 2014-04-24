@@ -6,12 +6,14 @@ import java.util.Properties;
 
 import miljoboven.backend.BaseDAO;
 import miljoboven.client.Role;
+import miljoboven.client.Unit;
 
 public class UserDAO extends BaseDAO{
 	
 	private static final String NAME = "name";
 	private static final String PASSWORD = "password";
 	private static final String ROLE = "role";
+	private static final String UNIT = "unit";
 	
 	private static final String PREFIX = "user_";
 	private static final String SUFFIX = ".properties";
@@ -43,6 +45,7 @@ public class UserDAO extends BaseDAO{
         prop.setProperty(NAME,aUser.getName().toString());
         prop.setProperty(PASSWORD,aUser.getPassword().toString());
         prop.setProperty(ROLE,aUser.getRole().toString());
+        prop.setProperty(UNIT,aUser.getUnit().toString());
         store(userFile, prop, true);
 
 		
@@ -67,7 +70,7 @@ public class UserDAO extends BaseDAO{
 	     prop = load(userFile);
 	     
 	        //System.out.println(password);
-	        user = new User(id, prop.getProperty(PASSWORD),prop.getProperty(ROLE));
+	        user = new User(id, prop.getProperty(PASSWORD),prop.getProperty(ROLE),prop.getProperty(UNIT));
 
 	        System.out.println("READ(" + aUser.getName() + "): " + user.toString());
 	        
@@ -96,7 +99,7 @@ public class UserDAO extends BaseDAO{
 	                	System.out.println("File: " + fileNames[i]);
 	                	String userName = fileNames[i].substring(PREFIX.length(),fileNames[i].lastIndexOf(SUFFIX));
 	                	System.out.println("User: " + userName);
-	                	User u = new User(userName,"","");
+	                	User u = new User(userName,"","","");
 	                	users.add(read(u));
 	                }
 	                
@@ -111,8 +114,10 @@ public class UserDAO extends BaseDAO{
 	
 	public static void main(String[] args){
 		UserDAO ud = new UserDAO();
-		User a = new User("herman", "pizza", Role.ENHETSCHEF);
+		User a = new User("herman", "pizza", Role.ENHETSCHEF, Unit.AVFALL);
+		User admin = new User("admin", "admin", Role.ADMIN, Unit.IT);
 		ud.create(a);
+		ud.create(admin);
 		
 		
 		

@@ -18,10 +18,53 @@ public class Case {
     private String nameOfReporter; 
     private String addressOfReporter; 
     private String phoneOfReporter; 
-      
+    private String[] fileNames;
+    private String status;
+    private boolean noInvestigation;
+    
     public Case() { 
-          
+        
     } 
+
+
+	public String[] getFileNames() {
+		return fileNames;
+	}
+	
+	public String getFileNamesAsString(){
+		String names = "";
+		
+		for(String s : fileNames){
+			names += s + ",";
+		}
+		return names.substring(0,names.length() -1);
+	}
+
+
+	public void setFileNames(String[] fileNames) {
+		this.fileNames = fileNames;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getNoInvestigationAsString(){
+		return "" + noInvestigation;
+    }
+	
+	public boolean isNoInvestigation() {
+		return noInvestigation;
+	}
+
+	public void setNoInvestigation(boolean noInvestigation) {
+		this.noInvestigation = noInvestigation;
+	}
   
     public Date getDateOfReport() { 
         return dateOfReport; 
@@ -101,14 +144,20 @@ public class Case {
   
     public void setPhoneOfReporter(String phoneOfReporter) { 
         this.phoneOfReporter = phoneOfReporter; 
-    } 
+    }
+
+	@Override
+	public String toString() {
+		return "Case [dateOfReport=" + dateOfReport + ", dateOfCrime="
+				+ dateOfCrime + ", nameOfUnit=" + nameOfUnit + ", typeOfCrime="
+				+ typeOfCrime + ", id=" + id + ", locationOfCrime="
+				+ locationOfCrime + ", comments=" + comments
+				+ ", nameOfReporter=" + nameOfReporter + ", addressOfReporter="
+				+ addressOfReporter + ", phoneOfReporter=" + phoneOfReporter
+				+ ", fileNames=" + fileNames + ", status=" + status
+				+ ", noInvestigation=" + noInvestigation + "]";
+	} 
   
-    
-    public String toString() { 
-        return "Case{" + "dateOfReport=" + dateOfReport + ", dateOfCrime=" + dateOfCrime + ", nameOfUnit=" + nameOfUnit + ", typeOfCrime=" + typeOfCrime + ", id=" + id + ", locationOfCrime=" + locationOfCrime + ", comments=" + comments + ", nameOfReporter=" + nameOfReporter + ", addressOfReporter=" + addressOfReporter + ", phoneOfReporter=" + phoneOfReporter + '}'; 
-    } 
-      
-      
-      
+  
       
 } 

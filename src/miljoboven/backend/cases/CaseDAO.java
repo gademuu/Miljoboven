@@ -24,7 +24,10 @@ public class CaseDAO extends BaseDAO {
     private static final String COMMENTS = "comments"; 
     private static final String NAMEOFREPORTER = "nameOfReporter"; 
     private static final String ADDRESSOFREPORTER = "addressOfReporter"; 
-    private static final String PHONEOFREPORTER = "phoneOfReporter"; 
+    private static final String PHONEOFREPORTER = "phoneOfReporter";
+    private static final String FILENAMES = "fileNames";
+    private static final String NOINVESTIGATION = "noInvestigation";
+    private static final String STATUS = "status";
   
     private static final String CASE_FILE_PREFIX = "case_"; 
     private static final String CASE_FILE_SUFFIX = ".properties"; 
@@ -48,7 +51,10 @@ public class CaseDAO extends BaseDAO {
         prop.setProperty(COMMENTS, aCase.getComments()); 
         prop.setProperty(NAMEOFREPORTER, aCase.getNameOfReporter()); 
         prop.setProperty(ADDRESSOFREPORTER, aCase.getAddressOfReporter()); 
-        prop.setProperty(PHONEOFREPORTER, aCase.getPhoneOfReporter()); 
+        prop.setProperty(PHONEOFREPORTER, aCase.getPhoneOfReporter());
+        prop.setProperty(FILENAMES, aCase.getFileNamesAsString());
+        prop.setProperty(NOINVESTIGATION, aCase.getNoInvestigationAsString());
+        prop.setProperty(STATUS, aCase.getStatus());
   
         store(caseFile, prop, true); 
   
@@ -77,7 +83,9 @@ public class CaseDAO extends BaseDAO {
         c.setNameOfReporter("Isac"); 
         c.setAddressOfReporter("Brottvagen 1"); 
         c.setPhoneOfReporter("1234567"); 
-  
+        c.setFileNames(new String[]{"hej","jag","heeheh"});
+        c.setStatus("Klar");
+        c.setNoInvestigation(true);
         Case storedCase = cd.create(c); 
         System.out.println(storedCase.toString()); 
     } 

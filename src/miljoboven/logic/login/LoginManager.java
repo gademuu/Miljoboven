@@ -17,7 +17,7 @@ public class LoginManager implements LoginListener{
      * @param password
      */
     public void loginBtnPressed(String name, String password){
-        user = new User(name, password, "");
+        user = new User(name, password, "","");
         
          user = userDAO.read(user);
          
