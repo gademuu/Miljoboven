@@ -1,10 +1,10 @@
-package backend.cases; 
+package miljoboven.backend.cases; 
   
 import java.util.Calendar; 
 import java.util.Date; 
 import java.util.Properties; 
 
-import backend.BaseDAO;
+import miljoboven.backend.BaseDAO;
   
 /** 
  * 
@@ -17,7 +17,7 @@ public class CaseDAO extends BaseDAO {
   
     private static final String DATEOFREPORT = "dateOfReport"; 
     private static final String DATEOFCRIME = "dateOfCrime"; 
-    private static final String NAMEOFCOORDINATOR = "nameOfCoordinator"; 
+    private static final String NAMEOFUNIT = "nameOfUnit"; 
     private static final String TYPEOFCRIME = "typeOfCrime"; 
     private static final String ID = "id"; 
     private static final String LOCATIONOFCRIME = "locationOfCrime"; 
@@ -41,7 +41,7 @@ public class CaseDAO extends BaseDAO {
         prop = load(caseFile); 
         prop.setProperty(DATEOFREPORT, aCase.getDateOfReport().toString()); 
         prop.setProperty(DATEOFCRIME, aCase.getDateOfCrime().toString()); 
-        prop.setProperty(NAMEOFCOORDINATOR, aCase.getNameOfCoordinator()); 
+        prop.setProperty(NAMEOFUNIT, aCase.getNameOfUnit()); 
         prop.setProperty(TYPEOFCRIME, aCase.getTypeOfCrime()); 
         prop.setProperty(ID, id); 
         prop.setProperty(LOCATIONOFCRIME, aCase.getLocationOfCrime()); 
@@ -70,7 +70,7 @@ public class CaseDAO extends BaseDAO {
         Case c = new Case(); 
         c.setDateOfReport(new Date()); 
         c.setDateOfCrime(new Date()); 
-        c.setNameOfCoordinator("Herman"); 
+        c.setNameOfUnit("Herman"); 
         c.setTypeOfCrime("Brott"); 
         c.setLocationOfCrime("Uppsala"); 
         c.setComments("En kommentar"); 

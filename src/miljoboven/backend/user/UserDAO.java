@@ -1,9 +1,10 @@
-package backend.user;
+package miljoboven.backend.user;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
-import backend.BaseDAO;
+
+import miljoboven.backend.BaseDAO;
 
 public class UserDAO extends BaseDAO{
 	

@@ -1,4 +1,4 @@
-package backend.cases; 
+package miljoboven.backend.cases; 
   
 import java.util.Date; 
   
@@ -10,7 +10,7 @@ public class Case {
       
     private Date dateOfReport; 
     private Date dateOfCrime; 
-    private String nameOfCoordinator; 
+    private String nameOfUnit; 
     private String typeOfCrime; 
     private String id; 
     private String locationOfCrime; 
@@ -39,12 +39,12 @@ public class Case {
         this.dateOfCrime = dateOfCrime; 
     } 
   
-    public String getNameOfCoordinator() { 
-        return nameOfCoordinator; 
+    public String getNameOfUnit() { 
+        return nameOfUnit; 
     } 
   
-    public void setNameOfCoordinator(String nameOfCoordinator) { 
-        this.nameOfCoordinator = nameOfCoordinator; 
+    public void setNameOfUnit(String nameOfUnit) { 
+        this.nameOfUnit = nameOfUnit; 
     } 
   
     public String getTypeOfCrime() { 
@@ -105,7 +105,7 @@ public class Case {
   
     
     public String toString() { 
-        return "Case{" + "dateOfReport=" + dateOfReport + ", dateOfCrime=" + dateOfCrime + ", nameOfCoordinator=" + nameOfCoordinator + ", typeOfCrime=" + typeOfCrime + ", id=" + id + ", locationOfCrime=" + locationOfCrime + ", comments=" + comments + ", nameOfReporter=" + nameOfReporter + ", addressOfReporter=" + addressOfReporter + ", phoneOfReporter=" + phoneOfReporter + '}'; 
+        return "Case{" + "dateOfReport=" + dateOfReport + ", dateOfCrime=" + dateOfCrime + ", nameOfUnit=" + nameOfUnit + ", typeOfCrime=" + typeOfCrime + ", id=" + id + ", locationOfCrime=" + locationOfCrime + ", comments=" + comments + ", nameOfReporter=" + nameOfReporter + ", addressOfReporter=" + addressOfReporter + ", phoneOfReporter=" + phoneOfReporter + '}'; 
     } 
       
       

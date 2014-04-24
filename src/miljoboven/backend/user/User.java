@@ -1,4 +1,4 @@
-package backend.user;
+package miljoboven.backend.user;
 
 /**
  * The User class represents a user with the persistent data, name, role and

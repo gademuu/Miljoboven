@@ -1,4 +1,4 @@
-package client.login;
+package miljoboven.client.login;
 
 public interface LoginListener {
 	

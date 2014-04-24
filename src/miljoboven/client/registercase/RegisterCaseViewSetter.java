@@ -1,4 +1,4 @@
-package client.registercase;
+package miljoboven.client.registercase;
 
 public interface RegisterCaseViewSetter {
 

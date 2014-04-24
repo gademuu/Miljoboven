@@ -1,8 +1,8 @@
-package logic.login;
+package miljoboven.logic.login;
 
-import client.login.LoginListener;
-import backend.user.User;
-import backend.user.UserDAO;
+import miljoboven.backend.user.User;
+import miljoboven.backend.user.UserDAO;
+import miljoboven.client.login.LoginListener;
 
 public class LoginManager implements LoginListener{
 	
