@@ -32,6 +32,9 @@ public class UpdateCaseManager {
 	        c.setNameOfReporter(nameOfReporter); 
 	        c.setAddressOfReporter( addressOfReporter); 
 	        c.setPhoneOfReporter(phoneOfReporter); 
+	        
+	        c.setStatus(status);
+	        c.setNoInvestigation(noInvestigation);
 	  
 	        Case storedCase = cd.create(c); 
 		

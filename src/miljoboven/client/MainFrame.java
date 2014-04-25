@@ -17,6 +17,9 @@ import miljoboven.client.registeruser.RegisterUserView;
 import miljoboven.client.registeruser.RegisterUserViewActionHandler;
 import miljoboven.client.showcase.ShowCaseView;
 import miljoboven.client.showcase.ShowCaseViewActionHandler;
+import miljoboven.client.updatecase.UpdateCaseListener;
+import miljoboven.client.updatecase.UpdateCaseView;
+import miljoboven.client.updatecase.UpdateCaseViewActionHandler;
 
 import java.awt.*;
 import java.awt.event.*; 
@@ -38,13 +41,17 @@ public class MainFrame extends JFrame implements LoginSetter{
     //register user
     private RegisterUserView ruView = null;
     private RegisterUserViewActionHandler ruvHandler = null;
+    //update case
+    private UpdateCaseView ucView = null;
+    private UpdateCaseViewActionHandler ucvHandler = null;
+    
     
     private CardLayout layout = null;
     
     /**
      * Creates new form MainFrame
      */
-    public MainFrame(RegisterCaseListener rcl, LoginListener ll, RegisterUserListener rul) {
+    public MainFrame(RegisterCaseListener rcl, LoginListener ll, RegisterUserListener rul, UpdateCaseListener ucl) {
         super("Miljöboven");
         
         setSize(600,600);
@@ -75,11 +82,19 @@ public class MainFrame extends JFrame implements LoginSetter{
         lvHandler.setView(lv);
         add(lv, "LOGIN_VIEW");
         
-        //Register user
+        //RegisterUser
         ruvHandler = new RegisterUserViewActionHandler(this, rul);
         ruView = new RegisterUserView(ruvHandler);
         ruvHandler.setView(ruView);
         add(ruView, "REGISTER_USER_VIEW");
+        
+        //UpdateCase
+        ucvHandler = new UpdateCaseViewActionHandler(this, ucl);
+        ucView = new UpdateCaseView(ucvHandler);
+        ucvHandler.setView(ucView);
+        add(ucView, "UPDATE_CASE_VIEW");
+        
+        
         
         
         layout.show(getContentPane(), "LOGIN_VIEW");
