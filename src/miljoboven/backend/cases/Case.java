@@ -1,6 +1,9 @@
 package miljoboven.backend.cases; 
   
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date; 
+import java.util.Scanner;
   
 /** 
  * 
@@ -20,12 +23,17 @@ public class Case {
     private String phoneOfReporter; 
     private String[] fileNames;
     private String status;
+    private String assignedTo;
     private boolean noInvestigation;
     
-    public Case() { 
-        
-    } 
+    public String getAssignedTo() {
+		return assignedTo;
+	}
 
+
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
+	}
 
 	public String[] getFileNames() {
 		return fileNames;
@@ -44,6 +52,26 @@ public class Case {
 	public void setFileNames(String[] fileNames) {
 		this.fileNames = fileNames;
 	}
+	
+	public void setFileNamesFromString(String fileNames){
+		    
+		    ArrayList<String>list = new ArrayList<>();
+			Scanner scanner = new Scanner(fileNames);
+			scanner.useDelimiter(",");
+
+	
+			 while (scanner.hasNext()) {
+				 list.add(scanner.next());
+	                    
+	            }
+			 this.fileNames = new String[list.size()];
+			 this.fileNames = list.toArray(this.fileNames);
+
+		}
+	
+		
+		
+	
 
 
 	public String getStatus() {
@@ -146,6 +174,7 @@ public class Case {
         this.phoneOfReporter = phoneOfReporter; 
     }
 
+
 	@Override
 	public String toString() {
 		return "Case [dateOfReport=" + dateOfReport + ", dateOfCrime="
@@ -154,9 +183,12 @@ public class Case {
 				+ locationOfCrime + ", comments=" + comments
 				+ ", nameOfReporter=" + nameOfReporter + ", addressOfReporter="
 				+ addressOfReporter + ", phoneOfReporter=" + phoneOfReporter
-				+ ", fileNames=" + fileNames + ", status=" + status
-				+ ", noInvestigation=" + noInvestigation + "]";
-	} 
+				+ ", fileNames=" + Arrays.toString(fileNames) + ", status="
+				+ status + ", assignedTo=" + assignedTo + ", noInvestigation="
+				+ noInvestigation + "]";
+	}
+
+
   
   
       

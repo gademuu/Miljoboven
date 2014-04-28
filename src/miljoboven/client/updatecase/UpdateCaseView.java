@@ -16,7 +16,7 @@ import miljoboven.client.Role;
  * @author Herman
  *
  */
-public class UpdateCaseView extends JFrame {
+public class UpdateCaseView extends JPanel {
 
 	private ActionListener actionListener = null;
 	private Role role = new Role();
@@ -75,7 +75,7 @@ public class UpdateCaseView extends JFrame {
     
     //TODO
     private JLabel l_investigate = new JLabel("Ska ej utredas");
-	JCheckBox tf_investigate = new 	JCheckBox();
+	JCheckBox cb_investigate = new 	JCheckBox();
     
     
     // End of fields and labels

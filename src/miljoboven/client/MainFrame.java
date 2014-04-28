@@ -4,6 +4,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
+import miljoboven.client.listcases.ListCasesListener;
+import miljoboven.client.listcases.ListCasesSetter;
+import miljoboven.client.listcases.ListCasesView;
+import miljoboven.client.listcases.ListCasesViewActionHandler;
 import miljoboven.client.login.LoginListener;
 import miljoboven.client.login.LoginSetter;
 import miljoboven.client.login.LoginView;
@@ -20,6 +24,10 @@ import miljoboven.client.showcase.ShowCaseViewActionHandler;
 import miljoboven.client.updatecase.UpdateCaseListener;
 import miljoboven.client.updatecase.UpdateCaseView;
 import miljoboven.client.updatecase.UpdateCaseViewActionHandler;
+import miljoboven.logic.login.LoginManager;
+import miljoboven.logic.registercase.RegisterCaseManager;
+import miljoboven.logic.registeruser.RegisterUserManager;
+import miljoboven.logic.updatecase.UpdateCaseManager;
 
 import java.awt.*;
 import java.awt.event.*; 
@@ -44,14 +52,16 @@ public class MainFrame extends JFrame implements LoginSetter{
     //update case
     private UpdateCaseView ucView = null;
     private UpdateCaseViewActionHandler ucvHandler = null;
-    
+    //list cases
+    private ListCasesView lcView = null;
+    private ListCasesViewActionHandler lcvHandler = null;
     
     private CardLayout layout = null;
     
     /**
      * Creates new form MainFrame
      */
-    public MainFrame(RegisterCaseListener rcl, LoginListener ll, RegisterUserListener rul, UpdateCaseListener ucl) {
+    public MainFrame(RegisterCaseListener rcl, LoginListener ll, RegisterUserListener rul, UpdateCaseListener ucl, ListCasesListener lcl) {
         super("Miljöboven");
         
         setSize(600,600);
@@ -94,11 +104,17 @@ public class MainFrame extends JFrame implements LoginSetter{
         ucvHandler.setView(ucView);
         add(ucView, "UPDATE_CASE_VIEW");
         
+        //ListCases
+        lcvHandler = new ListCasesViewActionHandler(this, lcl);
+        lcView = new ListCasesView(lcvHandler);
+        lcvHandler.setView(lcView);
+        add(lcView, "LIST_CASES_VIEW");
         
         
         
-        layout.show(getContentPane(), "LOGIN_VIEW");
         
+        //layout.show(getContentPane(), "LOGIN_VIEW");
+        layout.show(getContentPane(), "LIST_CASES_VIEW");
         addWindowListener(new WindowAdapter() {
          @Override
          public void windowClosing(WindowEvent windowEvent){
@@ -108,8 +124,8 @@ public class MainFrame extends JFrame implements LoginSetter{
         
     }
     
-    
-    /**
+
+	/**
      *
      */
     public void initialize() {
@@ -177,6 +193,11 @@ public class MainFrame extends JFrame implements LoginSetter{
     	
     	this.loggedInUser.role = role;
     	
+    }
+    
+    public ListCasesSetter getListCasesSetter(){
+    	
+    	return  lcView;
     }
     
     
