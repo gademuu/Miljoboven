@@ -20,15 +20,16 @@ public class Miljoboven {
 	
 	
     public Miljoboven() { 
-		
-	   //rcm = new RegisterCaseManager(mainFrame.getRegisterCaseViewSetter());
-    	rcm = new RegisterCaseManager();
-    	lm = new LoginManager();
-    	rum = new RegisterUserManager();
+			  
+    	
     	lcm = new ListCasesManager();
+    	lm = new LoginManager(lcm);
+    	rcm = new RegisterCaseManager(lcm);
+    	rum = new RegisterUserManager();
+    	
 	    mainFrame = new MainFrame(rcm, lm, rum, ucm, lcm);
 	    lcm.setListCasesSetter(mainFrame.getListCasesSetter());
-	    rcm.setListCasesSetter(mainFrame.getListCasesSetter());
+	    
 	    lm.setLoginSetter(mainFrame);
     } 
     

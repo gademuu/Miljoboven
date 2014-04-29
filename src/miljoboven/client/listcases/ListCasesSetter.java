@@ -3,6 +3,8 @@ package miljoboven.client.listcases;
 import java.util.Date;
 
 public interface ListCasesSetter {
+	
+	public void clearList();
 
 	public void addCase(String id, Date crimeDate, String unit, String crimeType,
 			String crimeLocation, String comments, String name,

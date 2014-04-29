@@ -19,6 +19,8 @@ public class ListCasesManager implements ListCasesListener{
 	
 	public void createList(){
 		
+		listCasesSetter.clearList();
+		
 		Case[] cases = cd.find(new Case());
 		
 		for(Case c : cases){

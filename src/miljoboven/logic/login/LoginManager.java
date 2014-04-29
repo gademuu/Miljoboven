@@ -2,14 +2,21 @@ package miljoboven.logic.login;
 
 import miljoboven.backend.user.User;
 import miljoboven.backend.user.UserDAO;
+import miljoboven.client.listcases.ListCasesSetter;
 import miljoboven.client.login.LoginListener;
 import miljoboven.client.login.LoginSetter;
+import miljoboven.logic.listcases.ListCasesManager;
 
 public class LoginManager implements LoginListener{
 	
 	private User user;
 	private UserDAO userDAO = new UserDAO();
-	private LoginSetter setter = null;
+	private LoginSetter loginSetter = null;
+	private ListCasesManager lcm = null;
+	
+	public LoginManager(ListCasesManager lcm) {
+		this.lcm = lcm;
+	}
 	
 	/**
      * Uses the UserDAO method read to see if the user exists and verifies the password. 
@@ -28,8 +35,9 @@ public class LoginManager implements LoginListener{
         
         if(user.isCorrect(password)){
             System.out.println("User login okey!");
-            setter.setRole(user.getRole());
-        	
+            loginSetter.setRole(user.getRole());
+            lcm.createList();
+          	
         }else{
             user = null;
             System.out.println("Wrong username or password");
@@ -41,8 +49,10 @@ public class LoginManager implements LoginListener{
     
     
     public void setLoginSetter(LoginSetter setter){
-    	this.setter = setter;
+    	this.loginSetter = setter;
     	
     }
+    
+  
 
 }

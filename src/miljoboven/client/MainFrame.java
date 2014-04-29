@@ -186,10 +186,11 @@ public class MainFrame extends JFrame implements LoginSetter{
     	this.loggedInUser.role = role;
     	
     	 //Initialize UpdateCase
+    	ucView.removeAll();
         ucView.initialize();
         
         //Initialize ListCases
-        
+        lcView.removeAll();
         lcView.initialize();
     }
     

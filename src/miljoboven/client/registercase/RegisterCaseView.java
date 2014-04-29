@@ -55,7 +55,7 @@ public class RegisterCaseView extends JPanel {
     public RegisterCaseView(ActionListener actionListener) {
       this.actionListener = actionListener;
       
-      setBackground(Color.CYAN);
+      setBackground(Color.GRAY);
       setSize(700,700);
       Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
@@ -194,7 +194,7 @@ public class RegisterCaseView extends JPanel {
       c = new GridBagConstraints();
       JPanel buttonPanel = new JPanel(new FlowLayout()); 
       buttonPanel.setBorder(outline);
-      buttonPanel.setBackground(Color.ORANGE);
+      buttonPanel.setBackground(Color.GRAY);
       okButton.addActionListener(actionListener); 
       cancelButton.addActionListener(actionListener); 
       buttonPanel.add(okButton);

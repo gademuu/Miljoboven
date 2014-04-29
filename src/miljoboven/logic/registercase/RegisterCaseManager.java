@@ -11,15 +11,16 @@ import miljoboven.client.Status;
 import miljoboven.client.listcases.ListCasesSetter;
 import miljoboven.client.registercase.RegisterCaseListener;
 import miljoboven.client.registercase.RegisterCaseViewSetter;
+import miljoboven.logic.listcases.ListCasesManager;
 
 public class RegisterCaseManager implements RegisterCaseListener {
 	
 	private CaseDAO cd = new CaseDAO();
-	private ListCasesSetter setter;
+	private ListCasesManager lcm;
 	
 	
-	public RegisterCaseManager(){
-		
+	public RegisterCaseManager(ListCasesManager lcm){
+		this.lcm = lcm;
 	}
 	
 	public void okButtonPressed(Date dateOfCrime,  String nameOfUnit, String typeOfCrime, String locationOfCrime, 
@@ -47,8 +48,10 @@ public class RegisterCaseManager implements RegisterCaseListener {
 	  
 	        Case storedCase = cd.create(c); 
 	        
+	        lcm.createList();
 	        
 	        
+	        /**
 	        setter.addCase(storedCase.getId(), 
 	        		storedCase.getDateOfCrime(), 
 	        		storedCase.getNameOfUnit(), 
@@ -63,9 +66,11 @@ public class RegisterCaseManager implements RegisterCaseListener {
 	        		storedCase.getDateOfReport(),
 	        		storedCase.getAssignedTo(),
 	        		storedCase.isNoInvestigation());
+	        		**/
 		
 	}
 	
+	/**
 	public void setListCasesSetter(ListCasesSetter setter) {
 		if(setter == null) {
 	        System.out.println("Setter is null!");
@@ -73,6 +78,7 @@ public class RegisterCaseManager implements RegisterCaseListener {
 		}
 		this.setter = setter;
 	}
+	**/
 	
 	public static void main(String[] args){
 		

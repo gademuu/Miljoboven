@@ -8,10 +8,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+
+import miljoboven.client.Role;
+import miljoboven.client.Unit;
 
 public class RegisterUserView extends JPanel{
 
@@ -27,14 +31,14 @@ private ActionListener actionListener = null;
     JTextField tf_name = new JTextField(20);
 
     
-    private JLabel l_password = new JLabel("Lösenord");
+    private JLabel l_password = new JLabel("Lösenord           ");
     JTextField tf_password = new JTextField(20);
     
-    private JLabel l_role = new JLabel("Behörighet");
-    JTextField tf_role = new JTextField(20);
+    private JLabel l_role = new JLabel("Behörighet        ");
+    JComboBox cb_role = new JComboBox(new String[]{Role.ENHETSCHEF,Role.HANDLAGGARE,Role.MILJOSAMORDNARE});
     
-    private JLabel l_unit = new JLabel("Enhet");
-    JTextField tf_unit = new JTextField(20);
+    private JLabel l_unit = new JLabel("Enhet                  ");
+    JComboBox cb_unit = new   JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
     // End of text fields and labels
     
     // Buttons
@@ -46,7 +50,7 @@ private ActionListener actionListener = null;
     public RegisterUserView(ActionListener actionListener) {
         this.actionListener = actionListener;
         
-        setBackground(Color.CYAN);
+        setBackground(Color.GRAY);
         setSize(700,700);
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
@@ -91,7 +95,7 @@ private ActionListener actionListener = null;
         JPanel roleTextBoxPanel = new JPanel(new FlowLayout());
         roleTextBoxPanel.setBorder(outline); // To show the component border
         roleTextBoxPanel.add(l_role);
-        roleTextBoxPanel.add(tf_role);
+        roleTextBoxPanel.add(cb_role);
         c.gridx = 0;
         c.gridy = 3;
         c.anchor = GridBagConstraints.WEST;
@@ -103,7 +107,7 @@ private ActionListener actionListener = null;
         JPanel unitTextBoxPanel = new JPanel(new FlowLayout());
         unitTextBoxPanel.setBorder(outline); // To show the component border
         unitTextBoxPanel.add(l_unit);
-        unitTextBoxPanel.add(tf_unit);
+        unitTextBoxPanel.add(cb_unit);
         c.gridx = 0;
         c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
@@ -116,8 +120,8 @@ private ActionListener actionListener = null;
         // Buttons
         c = new GridBagConstraints();
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
-        buttonPanel.setBorder(outline);
-        buttonPanel.setBackground(Color.CYAN);
+       // buttonPanel.setBorder(outline);
+        buttonPanel.setBackground(Color.GRAY);
         okButton.addActionListener(actionListener); 
         cancelButton.addActionListener(actionListener);
         buttonPanel.add(okButton);

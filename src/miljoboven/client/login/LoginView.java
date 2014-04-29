@@ -26,8 +26,8 @@ public class LoginView extends JPanel{
     JTextField tf_name = new JTextField(20);
 
     
-    private JLabel l_password = new JLabel("Lösenord");
-    JTextField tf_password = new JTextField(20);
+    private JLabel l_password = new JLabel("Lösenord   ");
+    JTextField tf_password = new JTextField(22);
     // End of text fields and labels
     
     // Buttons
@@ -38,7 +38,7 @@ public class LoginView extends JPanel{
     public LoginView(ActionListener actionListener) {
         this.actionListener = actionListener;
         
-        setBackground(Color.CYAN);
+        setBackground(Color.GRAY);
         setSize(700,700);
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
@@ -83,8 +83,8 @@ public class LoginView extends JPanel{
         // Buttons
         c = new GridBagConstraints();
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
-        buttonPanel.setBorder(outline);
-        buttonPanel.setBackground(Color.CYAN);
+        //buttonPanel.setBorder(outline);
+        buttonPanel.setBackground(Color.GRAY);
         okButton.addActionListener(actionListener); 
         cancelButton.addActionListener(actionListener); 
         buttonPanel.add(okButton);

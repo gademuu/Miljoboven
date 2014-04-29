@@ -164,7 +164,7 @@ public class CaseDAO extends BaseDAO {
 	     theCase.setNoInvestigation(new Boolean(prop.getProperty(NOINVESTIGATION)).booleanValue());
 	     theCase.setAssignedTo(prop.getProperty(ASSIGNED_TO));
 	      
-	        //System.out.println("READ(" + theCase.toString());
+	     System.out.println("READ(" + theCase.toString());
 	        
 	        return theCase;	
 		
@@ -178,25 +178,27 @@ public class CaseDAO extends BaseDAO {
 	        String filePath = "."; 
 	        File f = new File(filePath); 
 	        String[] fileNames = f.list(); 
-	        Case c = new Case();
+	        Case c1 = new Case();
+	        Case c2 = new Case();
 	        String assignedTo = criteria.getAssignedTo();
 	        String id = "";
 	       
 	        
 	        for (int i = 0; i < fileNames.length; i++) { 
 	                if(fileNames[i].startsWith(CASE_FILE_PREFIX)){
-	                	//System.out.println("File: " + fileNames[i]);
+	                	System.out.println("File: " + fileNames[i]);
 	                    id = fileNames[i].substring(CASE_FILE_PREFIX.length(),fileNames[i].lastIndexOf(CASE_FILE_SUFFIX));
 	                	
-	                	c.setId(id);
+	                	c1.setId(id);
 	                	
-	                	c = read(c);
+	                	c2 = read(c1);
 	                	
 	                	if( assignedTo != null){
 	                		
 	                		
-	                		if(assignedTo.equals(c.getAssignedTo())){
-	                			cases.add(c);
+	                		if(assignedTo.equals(c2.getAssignedTo())){
+	                			cases.add(c2);
+	                			System.out.println("FIND: Assigned to NOT null. Adding: " + c2.getId());
 	                			
 	                		}
 	                		
@@ -204,7 +206,8 @@ public class CaseDAO extends BaseDAO {
 	                		
 	                	}else{
 	                		
-	                		cases.add(c);
+	                		cases.add(c2);
+	                		System.out.println("FIND: Assigned to IS null. Adding: " + c2.getId());
 	                	}
 	                	
 	                
@@ -223,6 +226,8 @@ public class CaseDAO extends BaseDAO {
     	
         CaseDAO cd = new CaseDAO(); 
         Case c = new Case(); 
+        
+        /*
         c.setDateOfReport(new Date()); 
         c.setDateOfCrime(new Date()); 
         c.setNameOfUnit("Herman"); 
@@ -238,8 +243,10 @@ public class CaseDAO extends BaseDAO {
         c.setNoInvestigation(true);
         Case storedCase = cd.create(c); 
         //System.out.println(storedCase.toString()); 
+         
+         */
         
-        
+        /*
         c.setDateOfReport(new Date()); 
         c.setDateOfCrime(new Date()); 
         c.setNameOfUnit("Apa"); 
@@ -256,8 +263,9 @@ public class CaseDAO extends BaseDAO {
         storedCase = cd.create(c); 
        // System.out.println(storedCase.toString());
         storedCase.setAssignedTo("Pontus");
+        */
         
-        Case[] cases = cd.find(storedCase);
+        Case[] cases = cd.find(c);
         for(Case tex : cases){
         	
         	System.out.println("find: " + tex.toString());

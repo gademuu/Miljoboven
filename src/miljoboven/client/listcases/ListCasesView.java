@@ -79,6 +79,7 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	      //Table
 	      c = new GridBagConstraints();
 	      dataModel = new DefaultTableModel(0,5);
+	      clearList();
 	      table = new JTable(dataModel);
 	      JScrollPane scrollpane = new JScrollPane(table);
 	      c.gridwidth = 3;
@@ -91,7 +92,12 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	      dependingOnRole();
 	    }
 	    
-		
+		@Override
+		public void clearList() {
+			String[][] newVector = new String[0][5];
+			String[] colNames = new String[]{"ID", "Enhet", "Handlaggare", "Status", "Valj"};
+			dataModel.setDataVector(newVector, colNames);
+		}
 
 		@Override
 		public void addCase(String id,Date crimeDate, String unit, String crimeType,
@@ -107,8 +113,6 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 			v.add(status);
 			
 			dataModel.addRow(v);
-			
-			
 		}
 		
 
