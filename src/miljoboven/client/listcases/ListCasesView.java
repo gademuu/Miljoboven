@@ -13,12 +13,16 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import miljoboven.client.MainFrame;
+import miljoboven.client.Role;
+
 public class ListCasesView extends JPanel implements ListCasesSetter{
 	
 	
 	  private ActionListener actionListener = null;
 	  private JTable table = null;
-	  DefaultTableModel dataModel  = null;
+	  private DefaultTableModel dataModel  = null;
+	  private MainFrame mainFrame = null;
 	
 	    
 	    // Text fields and labels
@@ -35,13 +39,19 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	    
 	    // Buttons
 	    private JButton searchButton = new JButton("Sök");  
+	    private JButton registerButton = new JButton("Registrera");  
+	    private JButton logoutButton = new JButton("Logga ut");  
 	
 	    
 	    
-	    public ListCasesView(ActionListener actionListener) {
+	    public ListCasesView(MainFrame mainFrame,ActionListener actionListener) {
 	      this.actionListener = actionListener;
+	      this.mainFrame = mainFrame;
+	    }
+	    
+	    public void initialize() {
 	      
-	      setBackground(Color.CYAN);
+	      setBackground(Color.GRAY);
 	      setSize(700,700);
 	      Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
@@ -50,39 +60,35 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	      GridBagConstraints c = null;
 	    
 	      
+	      //Navigate button panel
+	      c = new GridBagConstraints();
+	      JPanel buttonPanel = new JPanel(new FlowLayout()); 
+	      buttonPanel.setBorder(outline);
+	      buttonPanel.setBackground(Color.GRAY);
+	      logoutButton.addActionListener(actionListener); 
+	      buttonPanel.add(logoutButton); 
+	      c.gridwidth = 3;
+	      c.gridx = 0;
+	      c.gridy = 0;
+	      //c.gridy = 2;
+	      c.anchor = GridBagConstraints.PAGE_END;
+	      c.fill = GridBagConstraints.HORIZONTAL;
+	      add(buttonPanel, c);
+	      
+	      
 	      //Table
 	      c = new GridBagConstraints();
 	      dataModel = new DefaultTableModel(0,5);
 	      table = new JTable(dataModel);
 	      JScrollPane scrollpane = new JScrollPane(table);
-	      
-	     
-	      
 	      c.gridwidth = 3;
 	      c.gridx = 0;
-	      c.gridy = 0;
+	      c.gridy = 1;
 	      //c.anchor = GridBagConstraints.WEST;
 	      //c.fill = GridBagConstraints.BOTH;
 	      add(scrollpane, c);
 	      
-	      //
-	      JPanel searchTextBoxPanel = new JPanel(new FlowLayout());
-	      searchTextBoxPanel.setBorder(outline); // To show the component border
-	      searchTextBoxPanel.add(tf_assignedTo);
-	      searchTextBoxPanel.add(tf_status);
-	      searchTextBoxPanel.add(searchButton);
-	      searchButton.addActionListener(actionListener); 
-	      c.gridx = 0;
-	      c.gridy = 1;
-	      c.anchor = GridBagConstraints.WEST;
-	      //c.fill = GridBagConstraints.BOTH;
-	      add(searchTextBoxPanel, c);
-	      
-	      
-	      
-
-	     
-	      
+	      dependingOnRole();
 	    }
 	    
 		
@@ -104,6 +110,49 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 			
 			
 		}
+		
+
+	    public void dependingOnRole(){
+	    	 GridBagConstraints	c = new GridBagConstraints();
+	    	 
+	        switch(mainFrame.getRole().role){
+	     	case Role.ENHETSCHEF:
+	     	   //
+	     	 
+	  	      JPanel searchTextBoxPanel = new JPanel(new FlowLayout());
+	  	      searchTextBoxPanel.add(tf_assignedTo);
+	  	      searchTextBoxPanel.add(tf_status);
+	  	      searchTextBoxPanel.add(searchButton);
+	  	      searchButton.addActionListener(actionListener); 
+	  	      c.gridx = 0;
+	  	      c.gridy = 2;
+	  	      c.anchor = GridBagConstraints.WEST;
+	  	      //c.fill = GridBagConstraints.BOTH;
+	  	      add(searchTextBoxPanel, c);
+	  	      
+	     		break;
+	     		
+	     	case Role.HANDLAGGARE:
+	     		//Ingen extra knapp
+	     		break;
+	     		
+	     	case Role.MILJOSAMORDNARE:
+	     		 
+		  	      registerButton.addActionListener(actionListener); 
+		  	      c.gridx = 0;
+		  	      c.gridy = 2;
+		  	      c.anchor = GridBagConstraints.WEST;
+		  	      //c.fill = GridBagConstraints.BOTH;
+		  	      add(registerButton, c);
+	     		break;
+	     		
+	     	default:
+	     		
+	     		
+	     		
+	     	}
+	      	
+	    }
 
 	    
 	

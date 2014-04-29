@@ -9,9 +9,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import miljoboven.client.MainFrame;
+
 public class LoginView extends JPanel{
 	
 	private ActionListener actionListener = null;
+	  private MainFrame mainFrame = null;
 	
 	// Text fields and labels
 	
@@ -83,6 +86,7 @@ public class LoginView extends JPanel{
         buttonPanel.setBorder(outline);
         buttonPanel.setBackground(Color.CYAN);
         okButton.addActionListener(actionListener); 
+        cancelButton.addActionListener(actionListener); 
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);    
         c.gridwidth = 2;

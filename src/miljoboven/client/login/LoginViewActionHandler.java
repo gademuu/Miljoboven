@@ -31,24 +31,26 @@ public class LoginViewActionHandler implements ActionListener {
 	            
 	        	}else if(mainFrame.getRole().role.equals(Role.ENHETSCHEF)){
 	        		
-	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_CASE_VIEW");
+	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
 	        		
 	        	}else if(mainFrame.getRole().role.equals(Role.HANDLAGGARE)){
 	        		
-	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_CASE_VIEW");
+	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
 	        		
 	        	}else if(mainFrame.getRole().role.equals(Role.MILJOSAMORDNARE)){
 	        		
-	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_CASE_VIEW");
+	        		mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
 	        		
 	        	}else{
 	        		
 	        		System.out.println("Unknown role" + mainFrame.getRole().role);
 	        	}
 	        	
+	        }else if(e.getActionCommand().equals("Avsluta")){
+	        	 
+        	    System.exit(0);
+	         
 	        }
-	         
-	         
 	        
 	    }
 	    

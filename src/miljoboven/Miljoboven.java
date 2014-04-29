@@ -28,8 +28,8 @@ public class Miljoboven {
     	lcm = new ListCasesManager();
 	    mainFrame = new MainFrame(rcm, lm, rum, ucm, lcm);
 	    lcm.setListCasesSetter(mainFrame.getListCasesSetter());
+	    rcm.setListCasesSetter(mainFrame.getListCasesSetter());
 	    lm.setLoginSetter(mainFrame);
-	    lcm.createList();
     } 
     
    

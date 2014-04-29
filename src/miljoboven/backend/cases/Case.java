@@ -45,7 +45,13 @@ public class Case {
 		for(String s : fileNames){
 			names += s + ",";
 		}
-		return names.substring(0,names.length() -1);
+		
+		if(names.length() > 0) {
+			return names.substring(0,names.length() -1);
+		} else {
+			return names;
+		}
+			
 	}
 
 

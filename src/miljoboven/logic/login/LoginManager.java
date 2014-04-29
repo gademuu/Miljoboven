@@ -28,19 +28,17 @@ public class LoginManager implements LoginListener{
         
         if(user.isCorrect(password)){
             System.out.println("User login okey!");
+            setter.setRole(user.getRole());
         	
         }else{
             user = null;
             System.out.println("Wrong username or password");
+            return;
         }
-        setter.setRole(user.getRole());
+        
+        
     }
     
-    public static void main(String[] args){
-    	LoginManager lm = new LoginManager();
-    	lm.loginBtnPressed("Herman", "pizza");
-    	
-    }
     
     public void setLoginSetter(LoginSetter setter){
     	this.setter = setter;

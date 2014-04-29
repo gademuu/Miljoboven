@@ -31,7 +31,10 @@ public class RegisterCaseViewActionHandler implements ActionListener {
          if(e.getActionCommand().equals("OK")) {
         	listener.okButtonPressed(DateCreator.generateDate(view.tf_crimeDate.getText()), view.tf_unit.getText(), view.tf_crimeType.getText(),
         			view.tf_crimeLocation.getText(), view.ta_comments.getText(), view.tf_name.getText(), view.tf_address.getText(), view.tf_phone.getText());
-            mainFrame.getLayout().show(mainFrame.getContentPane(), "SHOW_CASE_VIEW");
+            mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
+        } if(e.getActionCommand().equals("Avbryt")) {
+        	
+            mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
         }
          
          

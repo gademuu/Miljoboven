@@ -8,7 +8,7 @@ public class Role {
 	public static final String HANDLAGGARE = "handlaggare";
 	
 	//ajabaja
-	public String role = null;
+	public String role = "";
 	
 	
 	

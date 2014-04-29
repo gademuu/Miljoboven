@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import miljoboven.client.MainFrame;
 import miljoboven.client.Role;
 
 /**
@@ -19,7 +20,7 @@ import miljoboven.client.Role;
 public class UpdateCaseView extends JPanel {
 
 	private ActionListener actionListener = null;
-	private Role role = new Role();
+	private MainFrame mainFrame = null;
     
     // Text fields and labels
 	//Reporter
@@ -85,10 +86,14 @@ public class UpdateCaseView extends JPanel {
     private JButton cancelButton = new JButton("Cancel"); 
     private JButton uploadButton = new JButton("Upload"); 
     
-    public UpdateCaseView(ActionListener actionListener) {
+    public UpdateCaseView(MainFrame mainFrame, ActionListener actionListener) {
         this.actionListener = actionListener;
-        
-        setBackground(Color.CYAN);
+        this.mainFrame = mainFrame;
+    }
+    
+    
+    public void initialize() {
+        setBackground(Color.GRAY);
         setSize(700,700);
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
@@ -312,7 +317,7 @@ public class UpdateCaseView extends JPanel {
     
     public void dependingOnRole(){
     	
-    	 switch(role.role){
+    	 switch(mainFrame.getRole().role){
      	case Role.ENHETSCHEF:
      		
      		break;
@@ -329,10 +334,7 @@ public class UpdateCaseView extends JPanel {
      		
      		break;
      	}
-      
-    
-    	
-    	
+      	
     }
 
 }

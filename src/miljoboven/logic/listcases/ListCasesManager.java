@@ -30,8 +30,6 @@ public class ListCasesManager implements ListCasesListener{
 		
 	}
 
-	public static void main(String[] args) {
 	
-	}
 
 }

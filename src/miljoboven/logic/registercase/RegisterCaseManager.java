@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 import miljoboven.backend.cases.Case;
 import miljoboven.backend.cases.CaseDAO;
+import miljoboven.client.Status;
+import miljoboven.client.listcases.ListCasesSetter;
 import miljoboven.client.registercase.RegisterCaseListener;
 import miljoboven.client.registercase.RegisterCaseViewSetter;
 
 public class RegisterCaseManager implements RegisterCaseListener {
 	
 	private CaseDAO cd = new CaseDAO();
-	private RegisterCaseViewSetter registerCaseViewSetter;
+	private ListCasesSetter setter;
 	
 	
-	public RegisterCaseManager(){//RegisterCaseViewSetter registerCaseViewSetter){
-		//this.registerCaseViewSetter = registerCaseViewSetter;
-		//registerCaseViewSetter.setRegisterCaseListener(this);
+	public RegisterCaseManager(){
 		
 	}
 	
@@ -26,6 +26,9 @@ public class RegisterCaseManager implements RegisterCaseListener {
 			String comments, String nameOfReporter, String addressOfReporter, String phoneOfReporter){
 		
 		Case c = new Case();
+		
+		 
+		   
 		
 	        c.setDateOfReport(new Date()); 
 	        c.setDateOfCrime(dateOfCrime); 
@@ -36,9 +39,39 @@ public class RegisterCaseManager implements RegisterCaseListener {
 	        c.setNameOfReporter(nameOfReporter); 
 	        c.setAddressOfReporter( addressOfReporter); 
 	        c.setPhoneOfReporter(phoneOfReporter); 
+	        // Not part of register:
+	        c.setFileNames(new String[0]);
+	        c.setStatus(Status.INRAPPORTERAD);
+	        c.setAssignedTo("");
+	        c.setNoInvestigation(false);
 	  
 	        Case storedCase = cd.create(c); 
+	        
+	        
+	        
+	        setter.addCase(storedCase.getId(), 
+	        		storedCase.getDateOfCrime(), 
+	        		storedCase.getNameOfUnit(), 
+	        		storedCase.getTypeOfCrime(),
+	        		storedCase.getLocationOfCrime(),
+	        		storedCase.getComments(),
+	        		storedCase.getNameOfReporter(),
+	        		storedCase.getAddressOfReporter(),
+	        		storedCase.getPhoneOfReporter(),
+	        		storedCase.getFileNames(),
+	        		storedCase.getStatus(),
+	        		storedCase.getDateOfReport(),
+	        		storedCase.getAssignedTo(),
+	        		storedCase.isNoInvestigation());
 		
+	}
+	
+	public void setListCasesSetter(ListCasesSetter setter) {
+		if(setter == null) {
+	        System.out.println("Setter is null!");
+	        System.exit(1);
+		}
+		this.setter = setter;
 	}
 	
 	public static void main(String[] args){

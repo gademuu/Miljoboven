@@ -25,9 +25,11 @@ public class RegisterUserViewActionHandler implements ActionListener {
 
 	         if(e.getActionCommand().equals("Spara")) {
 	        	listener.registerUserButtonPressed(view.tf_name.getText(), view.tf_password.getText(),view.tf_role.getText(), view.tf_unit.getText());
-	        	
-	         
-	         }   
+	     
+	         }else if(e.getActionCommand().equals("Avsluta")){
+	        	 
+	        	    mainFrame.getLayout().show(mainFrame.getContentPane(), "LOGIN_VIEW");
+	         }
 	    }
 	    
 	    public void setView(RegisterUserView view){

@@ -6,10 +6,12 @@ import java.awt.event.*;
 import javax.swing.*; 
 import javax.swing.border.Border;
 
+import miljoboven.client.MainFrame;
+
 public class RegisterCaseView extends JPanel {
     
     private ActionListener actionListener = null;
-    
+    private MainFrame mainFrame = null;
     // Text fields and labels
     
     private JLabel l_headReporter = new JLabel("Uppgifter om anmälaren");
@@ -40,14 +42,14 @@ public class RegisterCaseView extends JPanel {
     JTextArea ta_comments = new JTextArea(10,20);
     
     private JLabel l_unit = new JLabel("Välj enhet för utredning");
-    JTextField tf_unit = new JTextField("KRIGARNA",20);
+    JTextField tf_unit = new JTextField(" ",20);
     
     // End of fields and labels
     
     
     // Buttons
     private JButton okButton = new JButton("OK");  
-    private JButton cancelButton = new JButton("Cancel"); 
+    private JButton cancelButton = new JButton("Avbryt"); 
     
     
     public RegisterCaseView(ActionListener actionListener) {
@@ -192,8 +194,9 @@ public class RegisterCaseView extends JPanel {
       c = new GridBagConstraints();
       JPanel buttonPanel = new JPanel(new FlowLayout()); 
       buttonPanel.setBorder(outline);
-      buttonPanel.setBackground(Color.CYAN);
+      buttonPanel.setBackground(Color.ORANGE);
       okButton.addActionListener(actionListener); 
+      cancelButton.addActionListener(actionListener); 
       buttonPanel.add(okButton);
       buttonPanel.add(cancelButton);    
       c.gridwidth = 3;

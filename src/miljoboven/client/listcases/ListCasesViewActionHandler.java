@@ -3,6 +3,7 @@ import java.awt.event.*;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.registercase.RegisterCaseView;
+import miljoboven.util.DateCreator;
 
 
 public class ListCasesViewActionHandler implements ActionListener{
@@ -22,10 +23,19 @@ public class ListCasesViewActionHandler implements ActionListener{
 	    	this.view = view;
 	    	
 	    }
+	 
+	 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		  if(e.getActionCommand().equals("Logga ut")) {
+	        	
+	            mainFrame.getLayout().show(mainFrame.getContentPane(), "LOGIN_VIEW");
+	        } else if(e.getActionCommand().equals("Registrera")) {
+	        	
+	            mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_CASE_VIEW");
+	        }
+	         
 		
 	}
 

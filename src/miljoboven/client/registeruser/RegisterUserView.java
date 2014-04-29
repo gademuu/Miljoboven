@@ -40,6 +40,7 @@ private ActionListener actionListener = null;
     // Buttons
     private JButton cancelButton = new JButton("Avsluta");  
     private JButton okButton = new JButton("Spara"); 
+   
 	// End of buttons
     
     public RegisterUserView(ActionListener actionListener) {
@@ -118,6 +119,7 @@ private ActionListener actionListener = null;
         buttonPanel.setBorder(outline);
         buttonPanel.setBackground(Color.CYAN);
         okButton.addActionListener(actionListener); 
+        cancelButton.addActionListener(actionListener);
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);    
         c.gridwidth = 2;
