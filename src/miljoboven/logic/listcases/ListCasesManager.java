@@ -4,13 +4,19 @@ import miljoboven.backend.cases.Case;
 import miljoboven.backend.cases.CaseDAO;
 import miljoboven.client.listcases.ListCasesListener;
 import miljoboven.client.listcases.ListCasesSetter;
+import miljoboven.logic.updatecase.UpdateCaseManager;
 
 
 public class ListCasesManager implements ListCasesListener{
 	
 	private CaseDAO cd = new CaseDAO();
 	private ListCasesSetter listCasesSetter = null;
+	private UpdateCaseManager updateManager = null;
 	
+	public ListCasesManager(UpdateCaseManager updateManager){
+		
+		this.updateManager = updateManager;
+	}
 	
 	public void setListCasesSetter(ListCasesSetter listCasesSetter){
 		this.listCasesSetter = listCasesSetter;
@@ -29,6 +35,12 @@ public class ListCasesManager implements ListCasesListener{
 			
 		}
 		
+		
+	}
+	
+	public void caseSelected(String caseID){
+		
+		updateManager.caseSelected(caseID);
 		
 	}
 

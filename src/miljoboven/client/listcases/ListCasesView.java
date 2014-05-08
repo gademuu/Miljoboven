@@ -10,16 +10,18 @@ import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.Role;
 
-public class ListCasesView extends JPanel implements ListCasesSetter{
+public class ListCasesView extends JPanel implements ListCasesSetter{//, ListSelectionListener {
 	
 	
-	  private ActionListener actionListener = null;
+	  private ListCasesViewActionHandler actionListener = null;
 	  private JTable table = null;
 	  private DefaultTableModel dataModel  = null;
 	  private MainFrame mainFrame = null;
@@ -41,10 +43,11 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	    private JButton searchButton = new JButton("Sök");  
 	    private JButton registerButton = new JButton("Registrera");  
 	    private JButton logoutButton = new JButton("Logga ut");  
+	    
 	
 	    
 	    
-	    public ListCasesView(MainFrame mainFrame,ActionListener actionListener) {
+	    public ListCasesView(MainFrame mainFrame,ListCasesViewActionHandler actionListener) {
 	      this.actionListener = actionListener;
 	      this.mainFrame = mainFrame;
 	    }
@@ -81,10 +84,16 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	      dataModel = new DefaultTableModel(0,5);
 	      clearList();
 	      table = new JTable(dataModel);
+	      DefaultListSelectionModel sModel = new DefaultListSelectionModel();
+	      //sModel.addListSelectionListener(this);
+	      table.addMouseListener(actionListener);
+	      table.setSelectionModel(sModel);
 	      JScrollPane scrollpane = new JScrollPane(table);
 	      c.gridwidth = 3;
 	      c.gridx = 0;
 	      c.gridy = 1;
+	      
+	      
 	      //c.anchor = GridBagConstraints.WEST;
 	      //c.fill = GridBagConstraints.BOTH;
 	      add(scrollpane, c);
@@ -94,8 +103,8 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	    
 		@Override
 		public void clearList() {
-			String[][] newVector = new String[0][5];
-			String[] colNames = new String[]{"ID", "Enhet", "Handlaggare", "Status", "Valj"};
+			String[][] newVector = new String[0][4];
+			String[] colNames = new String[]{"ID", "Enhet", "Handlaggare", "Status"};
 			dataModel.setDataVector(newVector, colNames);
 		}
 
@@ -106,13 +115,17 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 				String status, Date dateOfReport, String assign,
 				boolean investigate) {
 			
+			
+			
 			Vector v = new Vector();
 			v.add(id);
 			v.add(unit);
 			v.add(assign);
 			v.add(status);
+		
 			
 			dataModel.addRow(v);
+			
 		}
 		
 
@@ -157,6 +170,14 @@ public class ListCasesView extends JPanel implements ListCasesSetter{
 	     	}
 	      	
 	    }
+
+		/*@Override
+		public void valueChanged(ListSelectionEvent e) {
+			
+			int row = e.getFirstIndex();
+			String caseId= (String)dataModel.getValueAt(row, 0);
+			actionListener.caseSelected(caseId);
+		}*/
 
 	    
 	

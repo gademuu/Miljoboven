@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -17,7 +19,7 @@ import miljoboven.client.Role;
  * @author Herman
  *
  */
-public class UpdateCaseView extends JPanel {
+public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 
 	private ActionListener actionListener = null;
 	private MainFrame mainFrame = null;
@@ -26,6 +28,8 @@ public class UpdateCaseView extends JPanel {
 	//Reporter
     
     private JLabel l_headReporter = new JLabel("Uppgifter om anmälaren");
+    
+    JLabel l_id = new JLabel("");
     
     private JLabel l_name = new JLabel("Namn");
     JTextField tf_name = new JTextField(20);
@@ -83,8 +87,8 @@ public class UpdateCaseView extends JPanel {
     
     // Buttons
     private JButton okButton = new JButton("Uppdatera");  
-    private JButton cancelButton = new JButton("Cancel"); 
-    private JButton uploadButton = new JButton("Upload"); 
+    private JButton cancelButton = new JButton("Avbryt"); 
+    private JButton uploadButton = new JButton("Ladda up"); 
     
     public UpdateCaseView(MainFrame mainFrame, ActionListener actionListener) {
         this.actionListener = actionListener;
@@ -94,13 +98,17 @@ public class UpdateCaseView extends JPanel {
     
     public void initialize() {
         setBackground(Color.GRAY);
-        setSize(700,700);
+        setSize(600,600);
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
 
         
         setLayout(new GridBagLayout());
         GridBagConstraints c = null;
-      
+     
+        //TODO
+        //LÄGG IN ETT CASE ID LÄNGSTUPP I GRID BAG
+   
+            
         // Head Reporter 
         c = new GridBagConstraints(); 
         c.gridx = 0;
@@ -211,7 +219,7 @@ public class UpdateCaseView extends JPanel {
        
         // Head comments
         c = new GridBagConstraints(); 
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 0;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
@@ -232,7 +240,7 @@ public class UpdateCaseView extends JPanel {
         seeFilesTextBoxPanel.setBorder(outline); // To show the component border
         seeFilesTextBoxPanel.add(l_seeFiles);
         seeFilesTextBoxPanel.add(tf_seeFiles);
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
@@ -244,7 +252,7 @@ public class UpdateCaseView extends JPanel {
         uploadFilesTextBoxPanel.setBorder(outline); // To show the component border
         uploadFilesTextBoxPanel.add(l_uploadFiles);
         uploadFilesTextBoxPanel.add(tf_uploadFiles);
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 3;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
@@ -256,7 +264,7 @@ public class UpdateCaseView extends JPanel {
         statusTextBoxPanel.setBorder(outline); // To show the component border
         statusTextBoxPanel.add(l_status);
         statusTextBoxPanel.add(tf_status);
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
@@ -272,7 +280,7 @@ public class UpdateCaseView extends JPanel {
         unitTextBoxPanel.setBorder(outline); // To show the component border
         unitTextBoxPanel.add(l_unit);
         unitTextBoxPanel.add(tf_unit);
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
@@ -283,7 +291,7 @@ public class UpdateCaseView extends JPanel {
         c = new GridBagConstraints();
         JPanel uploadButtonPanel = new JPanel(new FlowLayout()); 
         uploadButtonPanel.setBorder(outline);
-        uploadButtonPanel.setBackground(Color.CYAN);
+        uploadButtonPanel.setBackground(Color.GRAY);
         uploadButton.addActionListener(actionListener); 
         uploadButtonPanel.add(uploadButton);
         c.gridwidth = 1;
@@ -298,8 +306,9 @@ public class UpdateCaseView extends JPanel {
         c = new GridBagConstraints();
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
         buttonPanel.setBorder(outline);
-        buttonPanel.setBackground(Color.CYAN);
+        buttonPanel.setBackground(Color.GRAY);
         okButton.addActionListener(actionListener); 
+        cancelButton.addActionListener(actionListener);
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);    
         c.gridwidth = 3;
@@ -336,5 +345,38 @@ public class UpdateCaseView extends JPanel {
      	}
       	
     }
+
+
+	@Override
+	public void setUpdateCaseListener(UpdateCaseListener updateCaseListener) {
+		
+	}
+
+
+	@Override
+	public void showCase(String id, Date crimeDate, String unit,
+			String crimeType, String crimeLocation, String comments,
+			String name, String address, String phone, String[] uploadFiles,
+			String status, Date dateOfReport, String assign, boolean investigate) {
+		
+			DateFormat date = DateFormat.getDateInstance();
+			l_id.setText(id); 
+			tf_address.setText(address);
+			ta_comments.setText(comments);
+			tf_asssign.setText(assign);
+	        tf_crimeDate.setText(date.format(crimeDate));
+	        tf_crimeLocation.setText(crimeLocation);
+	        tf_crimeType.setText(crimeType);
+	        tf_dateOfReport.setText(date.format(dateOfReport));
+	        tf_name.setText(name);
+	        tf_phone.setText(phone);
+	        //tf_seeFiles.setText(uploadFiles[0]); //TODO REPLACE WITH CHECK BOX
+	        tf_status.setText(status);
+	        tf_unit.setText(unit);
+	        //tf_uploadFiles.setText(uploadFiles[0]); //TODO KANSKE INTE SKA VA SÅ
+	        cb_investigate.setSelected(investigate);
+	        
+		
+	}
 
 }

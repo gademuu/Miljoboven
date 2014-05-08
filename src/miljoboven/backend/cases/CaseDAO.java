@@ -76,12 +76,15 @@ public class CaseDAO extends BaseDAO {
     } 
     
     public Case update(Case aCase) { 
+    	
+    	System.out.println("UPDATE: " + aCase.toString());
     	  
         String id = aCase.getId();
         String caseFile = CASE_FILE_PREFIX + id + CASE_FILE_SUFFIX; 
   
         Properties prop = new Properties(); 
         prop = load(caseFile); 
+        
         prop.setProperty(DATEOFREPORT, aCase.getDateOfReport().toString()); 
         prop.setProperty(DATEOFCRIME, aCase.getDateOfCrime().toString()); 
         prop.setProperty(NAMEOFUNIT, aCase.getNameOfUnit()); 

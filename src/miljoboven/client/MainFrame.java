@@ -69,7 +69,7 @@ public class MainFrame extends JFrame implements LoginSetter{
         this.ucl = ucl;
         this.lcl = lcl;
         
-        setSize(600,600);
+        setSize(900,900);
         setLocationRelativeTo(null); //This will center the JFrame in the middle of the screen
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
         
@@ -199,11 +199,11 @@ public class MainFrame extends JFrame implements LoginSetter{
     	return  lcView;
     }
     
-    /*
+    
     public UpdateCaseViewSetter getUpdateCaseSetter(){
     	
     	return  ucView;
     }
-    */
+    
     
 }

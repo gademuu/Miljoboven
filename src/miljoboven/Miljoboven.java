@@ -21,13 +21,14 @@ public class Miljoboven {
 	
     public Miljoboven() { 
 			  
-    	
-    	lcm = new ListCasesManager();
+    	ucm = new UpdateCaseManager();
+    	lcm = new ListCasesManager(ucm);
     	lm = new LoginManager(lcm);
     	rcm = new RegisterCaseManager(lcm);
     	rum = new RegisterUserManager();
     	
 	    mainFrame = new MainFrame(rcm, lm, rum, ucm, lcm);
+	    ucm.setUpdateCaseViewSetter(mainFrame.getUpdateCaseSetter());
 	    lcm.setListCasesSetter(mainFrame.getListCasesSetter());
 	    
 	    lm.setLoginSetter(mainFrame);

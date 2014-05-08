@@ -21,7 +21,7 @@ public class Case {
     private String nameOfReporter; 
     private String addressOfReporter; 
     private String phoneOfReporter; 
-    private String[] fileNames;
+    private String[] fileNames = new String[0];
     private String status;
     private String assignedTo;
     private boolean noInvestigation;
@@ -41,6 +41,8 @@ public class Case {
 	
 	public String getFileNamesAsString(){
 		String names = "";
+		
+		
 		
 		for(String s : fileNames){
 			names += s + ",";
