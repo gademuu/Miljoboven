@@ -27,6 +27,8 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     // Text fields and labels
 	//Reporter
     
+	
+	
     private JLabel l_headReporter = new JLabel("Uppgifter om anm‰laren");
     
     JLabel l_id = new JLabel("");
@@ -56,7 +58,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     JTextField tf_dateOfReport = new JTextField("≈≈≈≈-MM-DD");
     
     private JLabel l_unit = new JLabel("Enhet");
-    JTextField tf_unit = new JTextField(20);
+    JTextField tf_unit = new  JTextField(20);
     
     
     
@@ -66,7 +68,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     JTextArea ta_comments = new JTextArea(10,20);
     
     private JLabel l_seeFiles = new JLabel("Se filer");
-    JTextField tf_seeFiles = new JTextField(20);
+    JComboBox c_seeFiles = new JComboBox();
     
     private JLabel l_uploadFiles = new JLabel("Ladda upp filer");
     JTextField tf_uploadFiles = new JTextField(20);
@@ -76,9 +78,9 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     
     //TODO
     private JLabel l_assign = new JLabel("Tilldela handl‰ggare");
-    JTextField tf_asssign = new JTextField(20);
+    JTextField tf_asssign = new JTextField();
     
-    //TODO
+  
     private JLabel l_investigate = new JLabel("Ska ej utredas");
 	JCheckBox cb_investigate = new 	JCheckBox();
     
@@ -236,27 +238,17 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         
         //See files
         c = new GridBagConstraints();
-        JPanel seeFilesTextBoxPanel = new JPanel(new FlowLayout());
-        seeFilesTextBoxPanel.setBorder(outline); // To show the component border
-        seeFilesTextBoxPanel.add(l_seeFiles);
-        seeFilesTextBoxPanel.add(tf_seeFiles);
+        JPanel seeFilesComboBoxPanel = new JPanel(new FlowLayout());
+        seeFilesComboBoxPanel.setBorder(outline); // To show the component border
+        seeFilesComboBoxPanel.add(l_seeFiles);
+        seeFilesComboBoxPanel.add(c_seeFiles);
         c.gridx = 2;
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
-        add( seeFilesTextBoxPanel, c);
+        add( seeFilesComboBoxPanel, c);
         
-        //Upload files
-        c = new GridBagConstraints();
-        JPanel uploadFilesTextBoxPanel = new JPanel(new FlowLayout());
-        uploadFilesTextBoxPanel.setBorder(outline); // To show the component border
-        uploadFilesTextBoxPanel.add(l_uploadFiles);
-        uploadFilesTextBoxPanel.add(tf_uploadFiles);
-        c.gridx = 2;
-        c.gridy = 3;
-        c.anchor = GridBagConstraints.WEST;
-        //c.fill = GridBagConstraints.BOTH;
-        add( uploadFilesTextBoxPanel, c);
+       
         
         //Status
         c = new GridBagConstraints();
@@ -274,68 +266,106 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
      
       
         
-        // Unit 
-        c = new GridBagConstraints();
-        JPanel unitTextBoxPanel = new JPanel(new FlowLayout());
-        unitTextBoxPanel.setBorder(outline); // To show the component border
-        unitTextBoxPanel.add(l_unit);
-        unitTextBoxPanel.add(tf_unit);
-        c.gridx = 2;
-        c.gridy = 2;
-        c.anchor = GridBagConstraints.WEST;
-        //c.fill = GridBagConstraints.BOTH;
-        add( unitTextBoxPanel, c);
+       
         
-        
-        // Upload button
-        c = new GridBagConstraints();
-        JPanel uploadButtonPanel = new JPanel(new FlowLayout()); 
-        uploadButtonPanel.setBorder(outline);
-        uploadButtonPanel.setBackground(Color.GRAY);
-        uploadButton.addActionListener(actionListener); 
-        uploadButtonPanel.add(uploadButton);
-        c.gridwidth = 1;
-        c.gridx = 0;
-        //c.gridy = 2;
-        c.anchor = GridBagConstraints.PAGE_END;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        add(uploadButtonPanel, c);
+ 
         
         
         // Buttons
         c = new GridBagConstraints();
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
-        buttonPanel.setBorder(outline);
+        
         buttonPanel.setBackground(Color.GRAY);
         okButton.addActionListener(actionListener); 
         cancelButton.addActionListener(actionListener);
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);    
         c.gridwidth = 3;
-        c.gridx = 0;
-        //c.gridy = 2;
+        c.gridx = 1;
+        c.gridy = 11;
         c.anchor = GridBagConstraints.PAGE_END;
         c.fill = GridBagConstraints.HORIZONTAL;
         add(buttonPanel, c);
         
        
-        
+        dependingOnRole();
       }
     
     
     
     public void dependingOnRole(){
-    	
+    	  GridBagConstraints c = null;
+    	  c = new GridBagConstraints();
+    	  
+    	  
     	 switch(mainFrame.getRole().role){
      	case Role.ENHETSCHEF:
      		
+     	
+     
+            JPanel unitTextBoxPanel = new JPanel(new FlowLayout());
+            unitTextBoxPanel.add(l_unit);
+            unitTextBoxPanel.add(tf_unit);
+            c.gridx = 0;
+            c.gridy = 10;
+            c.anchor = GridBagConstraints.WEST;
+            //c.fill = GridBagConstraints.BOTH;
+            add( unitTextBoxPanel, c);
+     	
+     	   //Investigate 
+           JPanel investigateTextBoxPanel = new JPanel(new FlowLayout());
+           investigateTextBoxPanel.add(l_investigate);
+           investigateTextBoxPanel.add(cb_investigate);
+           c.gridx = 2;
+           c.gridy = 5;
+           c.anchor = GridBagConstraints.WEST;
+           //c.fill = GridBagConstraints.BOTH;
+           add(investigateTextBoxPanel, c);
+     		
+     	
      		break;
      		
      	case Role.HANDLAGGARE:
+     	
+     		 
+     	/*	 //Upload files
+            JPanel uploadFilesTextBoxPanel = new JPanel(new FlowLayout());
+            uploadFilesTextBoxPanel.add(l_uploadFiles);
+            uploadFilesTextBoxPanel.add(tf_uploadFiles);
+            c.gridx = 2;
+            c.gridy = 3;
+            c.anchor = GridBagConstraints.WEST;
+            //c.fill = GridBagConstraints.BOTH;
+            add( uploadFilesTextBoxPanel, c);*/
+            
+            // Upload button
+            JPanel uploadButtonPanel = new JPanel(new FlowLayout()); 
+            uploadButtonPanel.setBackground(Color.GRAY);
+            uploadButton.addActionListener(actionListener); 
+            uploadButtonPanel.add(uploadButton);
+            c.gridwidth = 1;
+            c.gridx = 2;
+            c.gridy = 2;
+            //c.gridy = 2;
+            c.anchor = GridBagConstraints.PAGE_END;
+            c.fill = GridBagConstraints.HORIZONTAL;
+            add(uploadButtonPanel, c);
+     		
      		
      		break;
      		
      	case Role.MILJOSAMORDNARE:
+     		
+     	   
+           JPanel unitTwoTextBoxPanel = new JPanel(new FlowLayout());
+           unitTwoTextBoxPanel.add(l_unit);
+           unitTwoTextBoxPanel.add(tf_unit);
+           c.gridx = 0;
+           c.gridy = 10;
+           c.anchor = GridBagConstraints.WEST;
+           //c.fill = GridBagConstraints.BOTH;
+           add( unitTwoTextBoxPanel, c);
+         	 
      		
      		break;
      		
@@ -345,6 +375,8 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
      	}
       	
     }
+    
+ 
 
 
 	@Override
@@ -363,7 +395,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 			l_id.setText(id); 
 			tf_address.setText(address);
 			ta_comments.setText(comments);
-			tf_asssign.setText(assign);
+			//c_asssign.setText(assign);
 	        tf_crimeDate.setText(date.format(crimeDate));
 	        tf_crimeLocation.setText(crimeLocation);
 	        tf_crimeType.setText(crimeType);
@@ -372,7 +404,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 	        tf_phone.setText(phone);
 	        //tf_seeFiles.setText(uploadFiles[0]); //TODO REPLACE WITH CHECK BOX
 	        tf_status.setText(status);
-	        tf_unit.setText(unit);
+	        //tf_unit.setText(unit);
 	        //tf_uploadFiles.setText(uploadFiles[0]); //TODO KANSKE INTE SKA VA S≈
 	        cb_investigate.setSelected(investigate);
 	        

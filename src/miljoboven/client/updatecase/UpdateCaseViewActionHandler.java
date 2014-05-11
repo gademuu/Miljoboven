@@ -2,6 +2,9 @@ package miljoboven.client.updatecase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -12,6 +15,14 @@ import java.util.Scanner;
 
 
 
+
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import miljoboven.client.MainFrame;
 import miljoboven.util.DateCreator;
 
@@ -19,8 +30,10 @@ import miljoboven.util.DateCreator;
 public class UpdateCaseViewActionHandler implements ActionListener{
 
 	 private MainFrame mainFrame = null;
-	    UpdateCaseListener listener = null;
-	    UpdateCaseView view = null;
+	 UpdateCaseListener listener = null;
+	 UpdateCaseView view = null;
+	    
+	    private BufferedImage image;
 	    
 	    public UpdateCaseViewActionHandler(MainFrame mainFrame, UpdateCaseListener listener) {
 	        this.mainFrame = mainFrame;
@@ -50,12 +63,39 @@ public class UpdateCaseViewActionHandler implements ActionListener{
 	        	
 	        	mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
 	        	
+	        }else if(e.getActionCommand().equals("Ladda up")){
+	        	
+	        	  JFileChooser chooser = new JFileChooser();
+	        	  File file = null;
+	        	  
+	        	  int returnVal = chooser.showOpenDialog(chooser);
+	        	  if(returnVal == JFileChooser.APPROVE_OPTION) {
+	        	       file = chooser.getSelectedFile();
+	        	    }
+	        	  
+	        	 
+	            try {                
+	               image = ImageIO.read(file);
+	               
+	                   ImageIcon icon = new ImageIcon(image);
+	                   JLabel label = new JLabel(icon);
+	                   JOptionPane.showMessageDialog(null, label);
+	                } catch (IOException ex) {
+	                   ex.printStackTrace();
+	                }
+	        	
+	        	
+	        	
+	        	
 	        }
 	         
-	     
-	         
-	         
 	        
+	    }
+	    
+	    
+	    public void uploadFiles(){
+	    	
+	    	
 	    }
 	    
 	    public void setView(UpdateCaseView view){
