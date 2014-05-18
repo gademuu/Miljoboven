@@ -5,7 +5,9 @@ package miljoboven.backend.conf;
  * @author herman 
  */
 public class ServerConf { 
-      
+	
+	private String docroot; 
+    private String lastCaseID;
    
     public ServerConf(String docroot, String lastCaseID) {
 		super();
@@ -29,8 +31,7 @@ public class ServerConf {
 	public void setLastCaseID(String lastCaseID) {
 		this.lastCaseID = lastCaseID;
 	}
-	private String docroot; 
-    private String lastCaseID;
+	
     
     
   

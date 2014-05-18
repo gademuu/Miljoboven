@@ -242,6 +242,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         seeFilesComboBoxPanel.setBorder(outline); // To show the component border
         seeFilesComboBoxPanel.add(l_seeFiles);
         seeFilesComboBoxPanel.add(c_seeFiles);
+        c_seeFiles.addActionListener(actionListener);
         c.gridx = 2;
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;

@@ -1,11 +1,11 @@
 package miljoboven.client.registercase;
 
 import java.awt.event.*;
-
-
+import java.text.DateFormat;
+import java.text.ParseException;
 
 import miljoboven.client.MainFrame;
-import miljoboven.util.DateCreator;
+
 
 
 /**
@@ -27,10 +27,17 @@ public class RegisterCaseViewActionHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
+    	 DateFormat date = DateFormat.getDateInstance();
 
          if(e.getActionCommand().equals("OK")) {
-        	listener.okButtonPressed(DateCreator.generateDate(view.tf_crimeDate.getText()), view.tf_unit.getText(), view.tf_crimeType.getText(),
-        			view.tf_crimeLocation.getText(), view.ta_comments.getText(), view.tf_name.getText(), view.tf_address.getText(), view.tf_phone.getText());
+        	try {
+				listener.okButtonPressed(date.parse(view.tf_crimeDate.getText()), view.tf_unit.getText(), view.tf_crimeType.getText(),
+						view.tf_crimeLocation.getText(), view.ta_comments.getText(), view.tf_name.getText(), view.tf_address.getText(), view.tf_phone.getText());
+			} catch (ParseException e1) {
+			
+				e1.printStackTrace();
+			}
             mainFrame.getLayout().show(mainFrame.getContentPane(), "LIST_CASES_VIEW");
         } if(e.getActionCommand().equals("Avbryt")) {
         	

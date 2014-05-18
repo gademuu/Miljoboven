@@ -5,7 +5,7 @@ import javax.swing.JTable;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.registercase.RegisterCaseView;
-import miljoboven.util.DateCreator;
+
 
 
 public class ListCasesViewActionHandler extends MouseAdapter implements ActionListener{

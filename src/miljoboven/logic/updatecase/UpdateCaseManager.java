@@ -12,11 +12,14 @@ public class UpdateCaseManager implements UpdateCaseListener{
 
 	private CaseDAO cd = new CaseDAO();
 	private UpdateCaseViewSetter setter;
+	private Case aCase = null;
 	
 	
 	public UpdateCaseManager() {
 		
 	}
+	
+	
 	
 	public void okButtonPressed(String id, Date crimeDate, String unit,  String crimeType,
 			 String crimeLocation, String comments,  String name, String address, String phone
@@ -37,6 +40,7 @@ public class UpdateCaseManager implements UpdateCaseListener{
 	        c.setAssignedTo(assign);
 	        c.setStatus(status);
 	        c.setNoInvestigation(investigate);
+	       
 	  
 	        Case storedCase = cd.update(c); 
 		
@@ -65,10 +69,20 @@ public class UpdateCaseManager implements UpdateCaseListener{
 						theCase.getAssignedTo(),
 						theCase.isNoInvestigation());
 		
+		aCase = theCase;
+		
+		
+		
 	}
 	
 	public void setUpdateCaseViewSetter(UpdateCaseViewSetter setter) {
 		this.setter = setter;
+	}
+	
+	public void addFile(String fileName){
+		
+		aCase.addFile(fileName);
+		
 	}
 	
 	

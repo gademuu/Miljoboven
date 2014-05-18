@@ -11,4 +11,6 @@ public interface UpdateCaseListener {
 			, String uploadFiles, String status,Date dateOfReport, String assign, boolean investigate);
 	
 	public void caseSelected(String caseId);
+	
+	public void addFile(String fileName);
 }

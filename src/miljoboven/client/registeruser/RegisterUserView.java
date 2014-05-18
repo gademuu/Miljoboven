@@ -38,7 +38,7 @@ private ActionListener actionListener = null;
     JComboBox cb_role = new JComboBox(new String[]{Role.ENHETSCHEF,Role.HANDLAGGARE,Role.MILJOSAMORDNARE});
     
     private JLabel l_unit = new JLabel("Enhet                  ");
-    JComboBox cb_unit = new   JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
+    JComboBox cb_unit  = new   JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
     // End of text fields and labels
     
     // Buttons

@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import miljoboven.client.MainFrame;
-import miljoboven.util.DateCreator;
+
 
 
 public class UpdateCaseViewActionHandler implements ActionListener{
@@ -67,13 +67,21 @@ public class UpdateCaseViewActionHandler implements ActionListener{
 	        	
 	        	  JFileChooser chooser = new JFileChooser();
 	        	  File file = null;
+	        	 
 	        	  
 	        	  int returnVal = chooser.showOpenDialog(chooser);
 	        	  if(returnVal == JFileChooser.APPROVE_OPTION) {
 	        	       file = chooser.getSelectedFile();
+	        	       
+	 	        	  view.c_seeFiles.addItem(file.toString());
+	 	        	  listener.addFile(file.toString());
+	 	        	  
+	 	        	  
+	 	        	  
 	        	    }
 	        	  
 	        	 
+	        	  
 	            try {                
 	               image = ImageIO.read(file);
 	               
@@ -87,16 +95,25 @@ public class UpdateCaseViewActionHandler implements ActionListener{
 	        	
 	        	
 	        	
+	        }else if(e.getSource() == view.c_seeFiles){
+	       	 
+	            try {                
+	               image = ImageIO.read(new File((String)view.c_seeFiles.getSelectedItem()));
+	               
+	                   ImageIcon icon = new ImageIcon(image);
+	                   JLabel label = new JLabel(icon);
+	                   JOptionPane.showMessageDialog(null, label);
+	                } catch (IOException ex) {
+	                   ex.printStackTrace();
+	                }
+	        	
 	        }
 	         
 	        
 	    }
 	    
 	    
-	    public void uploadFiles(){
-	    	
-	    	
-	    }
+	   
 	    
 	    public void setView(UpdateCaseView view){
 	    	this.view = view;

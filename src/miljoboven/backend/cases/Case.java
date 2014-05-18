@@ -77,6 +77,28 @@ public class Case {
 
 		}
 	
+	public void addFile(String fileName){
+		
+		if(fileNames == null){
+			
+			fileNames = new String[1];
+			fileNames[0] = fileName;
+		}else{
+			
+			String[] files = new String[fileNames.length + 1];
+			
+			for(int i = 0; i < fileNames.length; i++){
+				
+				files[i] = fileNames[i];
+				
+				
+			}
+			
+			files[fileNames.length] = fileName;
+			fileNames = files;
+			
+		}
+	}
 		
 		
 	
