@@ -8,7 +8,7 @@ public interface UpdateCaseListener {
 	
 	public void okButtonPressed(String caseId, Date crimeDate, String unit,  String crimeType,
 			 String crimeLocation, String comments,  String name, String address, String phone
-			, String uploadFiles, String status,Date dateOfReport, String assign, boolean investigate);
+			, String[] fileNames, String status,Date dateOfReport, String assign, boolean investigate);
 	
 	public void caseSelected(String caseId);
 	

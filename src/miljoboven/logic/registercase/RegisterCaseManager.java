@@ -1,8 +1,10 @@
 package miljoboven.logic.registercase;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Scanner;
 
 import miljoboven.backend.cases.Case;
@@ -26,12 +28,14 @@ public class RegisterCaseManager implements RegisterCaseListener {
 	public void okButtonPressed(Date dateOfCrime,  String nameOfUnit, String typeOfCrime, String locationOfCrime, 
 			String comments, String nameOfReporter, String addressOfReporter, String phoneOfReporter){
 		
+		
+		
 		Case c = new Case();
 		
 		 
 		   
 		
-	        c.setDateOfReport(new Date()); 
+	        c.setDateOfReport(new Date());
 	        c.setDateOfCrime(dateOfCrime); 
 	        c.setNameOfUnit(nameOfUnit); 
 	        c.setTypeOfCrime(typeOfCrime); 

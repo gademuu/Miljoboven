@@ -7,12 +7,15 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.Role;
+import miljoboven.client.Status;
+import miljoboven.client.Unit;
 
 /**
  * The view for updating cases 
@@ -31,7 +34,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 	
     private JLabel l_headReporter = new JLabel("Uppgifter om anmälaren");
     
-    JLabel l_id = new JLabel("");
+    JLabel l_id = new JLabel();
     
     private JLabel l_name = new JLabel("Namn");
     JTextField tf_name = new JTextField(20);
@@ -57,8 +60,8 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     private JLabel l_dateOfReport = new JLabel("Rapporterings datum");
     JTextField tf_dateOfReport = new JTextField("ÅÅÅÅ-MM-DD");
     
-    private JLabel l_unit = new JLabel("Enhet");
-    JTextField tf_unit = new  JTextField(20);
+    private JLabel l_unit = new JLabel("Välj enhet för utredning");
+    JComboBox c_unit = new JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.IT,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
     
     
     
@@ -74,11 +77,12 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     JTextField tf_uploadFiles = new JTextField(20);
     
     private JLabel l_status = new JLabel("Status");
-    JTextField tf_status = new JTextField(20);
+    
+    JComboBox c_status = new JComboBox(new String[]{Status.INRAPPORTERAD,Status.PABORJAD,Status.KLAR});
     
     //TODO
     private JLabel l_assign = new JLabel("Tilldela handläggare");
-    JTextField tf_asssign = new JTextField();
+    JTextField tf_assign = new JTextField(10);
     
   
     private JLabel l_investigate = new JLabel("Ska ej utredas");
@@ -107,14 +111,19 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         setLayout(new GridBagLayout());
         GridBagConstraints c = null;
      
-        //TODO
-        //LÄGG IN ETT CASE ID LÄNGSTUPP I GRID BAG
+        //ID
+        c = new GridBagConstraints(); 
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.WEST;
+        //c.fill = GridBagConstraints.BOTH;
+        add(l_id, c);
    
             
         // Head Reporter 
         c = new GridBagConstraints(); 
         c.gridx = 0;
-        c.gridy = 0;
+        c.gridy = 1;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(l_headReporter, c);
@@ -126,7 +135,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         nameTextBoxPanel.add(l_name);
         nameTextBoxPanel.add(tf_name);
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(nameTextBoxPanel, c);
@@ -138,7 +147,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         addressTextBoxPanel.add(l_address);
         addressTextBoxPanel.add(tf_address);
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(addressTextBoxPanel, c);
@@ -150,7 +159,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         phoneTextBoxPanel.add(l_phone);
         phoneTextBoxPanel.add(tf_phone);
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add( phoneTextBoxPanel, c);
@@ -161,7 +170,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         // Head crime
         c = new GridBagConstraints(); 
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 5;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(l_headCrime, c);
@@ -174,7 +183,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         crimeDateTextBoxPanel.add(l_crimeDate);
         crimeDateTextBoxPanel.add(tf_crimeDate);
         c.gridx = 0;
-        c.gridy = 5;
+        c.gridy = 6;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(crimeDateTextBoxPanel, c);
@@ -186,7 +195,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         crimeLocationTextBoxPanel.add(l_crimeLocation);
         crimeLocationTextBoxPanel.add(tf_crimeLocation);
         c.gridx = 0;
-        c.gridy = 6;
+        c.gridy = 7;
         c.anchor = GridBagConstraints.WEST;
         //c.insets = new Insets(0,10,0,0);
         //c.fill = GridBagConstraints.BOTH;
@@ -199,7 +208,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         crimeTypeTextBoxPanel.add(l_crimeType);
         crimeTypeTextBoxPanel.add(tf_crimeType);
         c.gridx = 0;
-        c.gridy = 7;
+        c.gridy = 8;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(crimeTypeTextBoxPanel, c);
@@ -211,7 +220,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         dateOfReportTextBoxPanel.add(l_dateOfReport);
         dateOfReportTextBoxPanel.add(tf_dateOfReport);
         c.gridx = 0;
-        c.gridy = 8;
+        c.gridy = 9;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
         add(dateOfReportTextBoxPanel, c);
@@ -253,15 +262,15 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
         
         //Status
         c = new GridBagConstraints();
-        JPanel statusTextBoxPanel = new JPanel(new FlowLayout());
-        statusTextBoxPanel.setBorder(outline); // To show the component border
-        statusTextBoxPanel.add(l_status);
-        statusTextBoxPanel.add(tf_status);
+        JPanel statusComboBoxPanel = new JPanel(new FlowLayout());
+        statusComboBoxPanel.setBorder(outline); // To show the component border
+        statusComboBoxPanel.add(l_status);
+        statusComboBoxPanel.add(c_status);
         c.gridx = 2;
         c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
         //c.fill = GridBagConstraints.BOTH;
-        add(statusTextBoxPanel, c);
+        add(statusComboBoxPanel, c);
         
         
      
@@ -302,21 +311,33 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
     	 switch(mainFrame.getRole().role){
      	case Role.ENHETSCHEF:
      		
-     	
-     
-            JPanel unitTextBoxPanel = new JPanel(new FlowLayout());
-            unitTextBoxPanel.add(l_unit);
-            unitTextBoxPanel.add(tf_unit);
-            c.gridx = 0;
-            c.gridy = 10;
+     	    JPanel assignTextBoxPanel = new JPanel(new FlowLayout());
+     	   assignTextBoxPanel.add(l_assign);
+     	  assignTextBoxPanel.add(tf_assign);
+            c.gridx = 2;
+            c.gridy = 6;
             c.anchor = GridBagConstraints.WEST;
             //c.fill = GridBagConstraints.BOTH;
-            add( unitTextBoxPanel, c);
+            add(assignTextBoxPanel, c);
+     		
+     	
+     
+     	      // Unit 
+     	      c = new GridBagConstraints();
+     	      JPanel unitComboBoxPanel = new JPanel(new FlowLayout());
+     	      unitComboBoxPanel.add(l_unit);
+     	      unitComboBoxPanel.add(c_unit);
+     	      c.gridx = 1;
+     	      c.gridy = 7;
+     	      c.anchor = GridBagConstraints.WEST;
+     	      //c.fill = GridBagConstraints.BOTH;
+     	      add( unitComboBoxPanel, c);
      	
      	   //Investigate 
            JPanel investigateTextBoxPanel = new JPanel(new FlowLayout());
            investigateTextBoxPanel.add(l_investigate);
            investigateTextBoxPanel.add(cb_investigate);
+           cb_investigate.addActionListener(actionListener);
            c.gridx = 2;
            c.gridy = 5;
            c.anchor = GridBagConstraints.WEST;
@@ -346,7 +367,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
             uploadButtonPanel.add(uploadButton);
             c.gridwidth = 1;
             c.gridx = 2;
-            c.gridy = 2;
+            c.gridy = 3;
             //c.gridy = 2;
             c.anchor = GridBagConstraints.PAGE_END;
             c.fill = GridBagConstraints.HORIZONTAL;
@@ -358,14 +379,16 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
      	case Role.MILJOSAMORDNARE:
      		
      	   
-           JPanel unitTwoTextBoxPanel = new JPanel(new FlowLayout());
-           unitTwoTextBoxPanel.add(l_unit);
-           unitTwoTextBoxPanel.add(tf_unit);
-           c.gridx = 0;
-           c.gridy = 10;
-           c.anchor = GridBagConstraints.WEST;
-           //c.fill = GridBagConstraints.BOTH;
-           add( unitTwoTextBoxPanel, c);
+     	      // Unit 
+     	      c = new GridBagConstraints();
+     	      JPanel TwounitComboBoxPanel = new JPanel(new FlowLayout());
+     	      TwounitComboBoxPanel.add(l_unit);
+     	      TwounitComboBoxPanel.add(c_unit);
+     	      c.gridx = 1;
+     	      c.gridy = 7;
+     	      c.anchor = GridBagConstraints.WEST;
+     	      //c.fill = GridBagConstraints.BOTH;
+     	      add( TwounitComboBoxPanel, c);
          	 
      		
      		break;
@@ -392,7 +415,7 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 			String name, String address, String phone, String[] uploadFiles,
 			String status, Date dateOfReport, String assign, boolean investigate) {
 		
-			DateFormat date = DateFormat.getDateInstance();
+		DateFormat date = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("sv","SE"));
 			l_id.setText(id); 
 			tf_address.setText(address);
 			ta_comments.setText(comments);
@@ -404,8 +427,8 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 	        tf_name.setText(name);
 	        tf_phone.setText(phone);
 	        //tf_seeFiles.setText(uploadFiles[0]); //TODO REPLACE WITH CHECK BOX
-	        tf_status.setText(status);
-	        //tf_unit.setText(unit);
+	        c_status.setSelectedItem(status);
+	        c_unit.setSelectedItem(unit);
 	        //tf_uploadFiles.setText(uploadFiles[0]); //TODO KANSKE INTE SKA VA SÅ
 	        cb_investigate.setSelected(investigate);
 	        

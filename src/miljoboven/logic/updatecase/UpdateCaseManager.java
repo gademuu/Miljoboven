@@ -4,6 +4,7 @@ import java.util.Date;
 
 import miljoboven.backend.cases.Case;
 import miljoboven.backend.cases.CaseDAO;
+import miljoboven.client.Status;
 import miljoboven.client.updatecase.UpdateCaseListener;
 import miljoboven.client.updatecase.UpdateCaseViewSetter;
 
@@ -23,7 +24,7 @@ public class UpdateCaseManager implements UpdateCaseListener{
 	
 	public void okButtonPressed(String id, Date crimeDate, String unit,  String crimeType,
 			 String crimeLocation, String comments,  String name, String address, String phone
-			, String uploadFiles, String status,Date dateOfReport, String assign, boolean investigate){
+			, String[] fileNames, String status,Date dateOfReport, String assign, boolean investigate){
 		
 		Case c = new Case();
 		
@@ -40,7 +41,17 @@ public class UpdateCaseManager implements UpdateCaseListener{
 	        c.setAssignedTo(assign);
 	        c.setStatus(status);
 	        c.setNoInvestigation(investigate);
-	       
+	        c.setFileNames(fileNames);
+	        
+	        System.out.println(" INVESTIGATE " + investigate);
+	        
+	        if(investigate){
+	        	
+	        		c.setStatus(Status.SKA_EJ_UTREDAS);
+	        		
+	        	
+	        	
+	        }
 	  
 	        Case storedCase = cd.update(c); 
 		

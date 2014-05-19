@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar; 
 import java.util.Date; 
+import java.util.Locale;
 import java.util.Properties; 
 
 import miljoboven.backend.BaseDAO;
@@ -21,7 +22,7 @@ import miljoboven.backend.user.User;
  */
 public class CaseDAO extends BaseDAO { 
   
-	private DateFormat date = DateFormat.getDateInstance();
+    DateFormat date = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("sv","SE"));
     private ServerConfDAO aServerConfDAO = new ServerConfDAO();
   
     private static final String DATEOFREPORT = "dateOfReport"; 
@@ -85,8 +86,10 @@ public class CaseDAO extends BaseDAO {
         Properties prop = new Properties(); 
         prop = load(caseFile); 
         
-        prop.setProperty(DATEOFREPORT, aCase.getDateOfReport().toString()); 
-        prop.setProperty(DATEOFCRIME, aCase.getDateOfCrime().toString()); 
+      
+        prop.setProperty(DATEOFREPORT, date.format(aCase.getDateOfReport())); 
+        prop.setProperty(DATEOFCRIME, date.format(aCase.getDateOfCrime())); 
+     
         prop.setProperty(NAMEOFUNIT, aCase.getNameOfUnit()); 
         prop.setProperty(TYPEOFCRIME, aCase.getTypeOfCrime()); 
         prop.setProperty(ID, id); 
@@ -126,9 +129,9 @@ public class CaseDAO extends BaseDAO {
         }
         
         
+        int year = Calendar.getInstance().get(Calendar.YEAR);
         
-        
-        return Calendar.YEAR + HYPHEN + CRIME_TYPE_ID + HYPHEN  + newLastCaseID; 
+        return year + HYPHEN + CRIME_TYPE_ID + HYPHEN  + newLastCaseID; 
     } 
     
     
@@ -224,12 +227,13 @@ public class CaseDAO extends BaseDAO {
 	        return cases.toArray(arr); 
 	}
   
-    public static void main(String[] args) { 
+   /* public static void main(String[] args) { 
   
     	
         CaseDAO cd = new CaseDAO(); 
         Case c = new Case(); 
-        
+        */
+	
         /*
         c.setDateOfReport(new Date()); 
         c.setDateOfCrime(new Date()); 
@@ -268,13 +272,14 @@ public class CaseDAO extends BaseDAO {
         storedCase.setAssignedTo("Pontus");
         */
         
+	/*
         Case[] cases = cd.find(c);
         for(Case tex : cases){
         	
         	System.out.println("find: " + tex.toString());
         }
-        
+      
      
-    } 
+    } */  
   
 } 

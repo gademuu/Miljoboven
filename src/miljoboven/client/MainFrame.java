@@ -19,8 +19,6 @@ import miljoboven.client.registercase.RegisterCaseViewSetter;
 import miljoboven.client.registeruser.RegisterUserListener;
 import miljoboven.client.registeruser.RegisterUserView;
 import miljoboven.client.registeruser.RegisterUserViewActionHandler;
-import miljoboven.client.showcase.ShowCaseView;
-import miljoboven.client.showcase.ShowCaseViewActionHandler;
 import miljoboven.client.updatecase.UpdateCaseListener;
 import miljoboven.client.updatecase.UpdateCaseView;
 import miljoboven.client.updatecase.UpdateCaseViewActionHandler;
@@ -41,9 +39,6 @@ public class MainFrame extends JFrame implements LoginSetter{
 	//register case
     private RegisterCaseView rcView = null;
     private RegisterCaseViewActionHandler rcvHandler = null;
-    //show
-    private ShowCaseView scView = null;
-    private ShowCaseViewActionHandler scvHandler = null;
     //login
     private LoginView lv = null;
     private LoginViewActionHandler lvHandler = null;
@@ -101,7 +96,7 @@ public class MainFrame extends JFrame implements LoginSetter{
         add(ruView, "REGISTER_USER_VIEW");
         
         //UpdateCase
-        ucvHandler = new UpdateCaseViewActionHandler(this, ucl);
+        ucvHandler = new UpdateCaseViewActionHandler(this, ucl,lcl);
         ucView = new UpdateCaseView(this,ucvHandler);
         ucvHandler.setView(ucView);
         add(ucView, "UPDATE_CASE_VIEW");
@@ -155,6 +150,7 @@ public class MainFrame extends JFrame implements LoginSetter{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+        	
             public void run() {
                 setVisible(true);
             }

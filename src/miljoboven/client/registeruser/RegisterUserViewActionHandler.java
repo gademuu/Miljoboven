@@ -30,7 +30,9 @@ public class RegisterUserViewActionHandler implements ActionListener {
 	        	listener.registerUserButtonPressed(view.tf_name.getText(), view.tf_password.getText(),(String)view.cb_role.getSelectedItem(),(String)view.cb_unit.getSelectedItem());
 	        	  view.tf_name.setText("");
 	        	  view.tf_password.setText("");
-	        	  JOptionPane.showMessageDialog(null, "Användare skapad");
+	        	 
+	        	  
+	        	  
 	        	  
 	        	  
 	         }else if(e.getActionCommand().equals("Avsluta")){

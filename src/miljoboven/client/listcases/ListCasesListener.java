@@ -4,6 +4,8 @@ public interface ListCasesListener {
 	
 	public void caseSelected(String caseID);
 	
+	public void createList();
+	
 	
 
 }

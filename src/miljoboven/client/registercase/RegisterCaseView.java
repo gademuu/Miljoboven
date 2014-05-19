@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import miljoboven.client.MainFrame;
+import miljoboven.client.Unit;
 
 public class RegisterCaseView extends JPanel {
     
@@ -42,7 +43,7 @@ public class RegisterCaseView extends JPanel {
     JTextArea ta_comments = new JTextArea(10,20);
     
     private JLabel l_unit = new JLabel("Välj enhet för utredning");
-    JTextField tf_unit = new JTextField(" ",20);
+    JComboBox c_unit = new JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.IT,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
     
     // End of fields and labels
     
@@ -177,17 +178,16 @@ public class RegisterCaseView extends JPanel {
       add(ta_comments, c);
 
       
-      /*// Unit 
+      // Unit 
       c = new GridBagConstraints();
-      JPanel unitTextBoxPanel = new JPanel(new FlowLayout());
-      unitTextBoxPanel.setBorder(outline); // To show the component border
-      unitTextBoxPanel.add(l_unit);
-      unitTextBoxPanel.add(tf_unit);
+      JPanel unitComboBoxPanel = new JPanel(new FlowLayout());
+      unitComboBoxPanel.add(l_unit);
+      unitComboBoxPanel.add(c_unit);
       c.gridx = 1;
-      c.gridy = 2;
+      c.gridy = 7;
       c.anchor = GridBagConstraints.WEST;
       //c.fill = GridBagConstraints.BOTH;
-      add( unitTextBoxPanel, c);*/
+      add( unitComboBoxPanel, c);
       
       
       // Buttons
