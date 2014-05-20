@@ -419,14 +419,23 @@ public class UpdateCaseView extends JPanel implements UpdateCaseViewSetter {
 			l_id.setText(id); 
 			tf_address.setText(address);
 			ta_comments.setText(comments);
-			//c_asssign.setText(assign);
+			tf_assign.setText(assign);
 	        tf_crimeDate.setText(date.format(crimeDate));
 	        tf_crimeLocation.setText(crimeLocation);
 	        tf_crimeType.setText(crimeType);
 	        tf_dateOfReport.setText(date.format(dateOfReport));
 	        tf_name.setText(name);
 	        tf_phone.setText(phone);
-	        //tf_seeFiles.setText(uploadFiles[0]); //TODO REPLACE WITH CHECK BOX
+	        
+	        c_seeFiles.removeAllItems();	        
+	        if(uploadFiles != null){
+	        for(int i = 0; i<uploadFiles.length;i++){
+	        	c_seeFiles.addItem(uploadFiles[i]);
+	        	}
+	        }else{
+	        	c_seeFiles.addItem("");
+	        	
+	        }
 	        c_status.setSelectedItem(status);
 	        c_unit.setSelectedItem(unit);
 	        //tf_uploadFiles.setText(uploadFiles[0]); //TODO KANSKE INTE SKA VA SÅ

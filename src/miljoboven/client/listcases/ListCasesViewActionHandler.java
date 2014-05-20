@@ -2,6 +2,9 @@ package miljoboven.client.listcases;
 import java.awt.event.*;
 
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.registercase.RegisterCaseView;
@@ -37,10 +40,25 @@ public class ListCasesViewActionHandler extends MouseAdapter implements ActionLi
 	        } else if(e.getActionCommand().equals("Registrera")) {
 	        	
 	            mainFrame.getLayout().show(mainFrame.getContentPane(), "REGISTER_CASE_VIEW");
-	        }
+	        } else if(e.getActionCommand().equals("Sök")) {
+	        	
+	        	
+	        	    RowFilter<TableModel, Object> rf = null;
+	        	    //If current expression doesn't parse, don't update.
+	        	    try {
+	        	        rf = RowFilter.regexFilter(view.tf_assignedTo.getText());
+	        	        view.sorter.setRowFilter(rf);
+	        	    } catch (java.util.regex.PatternSyntaxException i) {
+	        	       
+	        	    }
+	        	    
+	        	    
+	        	}
+	        	
+	 }
 	         
-		e.getSource();
-	}
+		
+	
 	
 	public void caseSelected(String caseId) {
 		mainFrame.getLayout().show(mainFrame.getContentPane(), "UPDATE_CASE_VIEW");

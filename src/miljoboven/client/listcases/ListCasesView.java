@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import miljoboven.client.MainFrame;
 import miljoboven.client.Role;
@@ -23,8 +24,9 @@ public class ListCasesView extends JPanel implements ListCasesSetter{//, ListSel
 	
 	  private ListCasesViewActionHandler actionListener = null;
 	  private JTable table = null;
-	  private DefaultTableModel dataModel  = null;
+	  DefaultTableModel dataModel  = null;
 	  private MainFrame mainFrame = null;
+	  TableRowSorter<TableModel> sorter = null;
 	
 	    
 	    // Text fields and labels
@@ -88,6 +90,12 @@ public class ListCasesView extends JPanel implements ListCasesSetter{//, ListSel
 	      //sModel.addListSelectionListener(this);
 	      table.addMouseListener(actionListener);
 	      table.setSelectionModel(sModel);
+	      //table.setAutoCreateRowSorter(true);
+	      
+	      sorter = new TableRowSorter<TableModel>(table.getModel());
+	      table.setRowSorter(sorter);
+	      
+	   
 	      JScrollPane scrollpane = new JScrollPane(table);
 	      c.gridwidth = 3;
 	      c.gridx = 0;
@@ -138,10 +146,10 @@ public class ListCasesView extends JPanel implements ListCasesSetter{//, ListSel
 	     	 
 	  	      JPanel searchTextBoxPanel = new JPanel(new FlowLayout());
 	  	      searchTextBoxPanel.add(tf_assignedTo);
-	  	      searchTextBoxPanel.add(tf_status);
+	  	      //searchTextBoxPanel.add(tf_status);
 	  	      searchTextBoxPanel.add(searchButton);
 	  	      searchButton.addActionListener(actionListener); 
-	  	      c.gridx = 0;
+	  	      c.gridx = 1;
 	  	      c.gridy = 2;
 	  	      c.anchor = GridBagConstraints.WEST;
 	  	      //c.fill = GridBagConstraints.BOTH;
