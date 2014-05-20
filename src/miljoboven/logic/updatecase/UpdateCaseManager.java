@@ -4,6 +4,9 @@ import java.util.Date;
 
 import miljoboven.backend.cases.Case;
 import miljoboven.backend.cases.CaseDAO;
+import miljoboven.backend.user.User;
+import miljoboven.backend.user.UserDAO;
+import miljoboven.client.Role;
 import miljoboven.client.Status;
 import miljoboven.client.updatecase.UpdateCaseListener;
 import miljoboven.client.updatecase.UpdateCaseViewSetter;
@@ -14,7 +17,7 @@ public class UpdateCaseManager implements UpdateCaseListener{
 	private CaseDAO cd = new CaseDAO();
 	private UpdateCaseViewSetter setter;
 	private Case aCase = null;
-	
+	private UserDAO ud = new UserDAO();
 	
 	public UpdateCaseManager() {
 		
@@ -62,6 +65,14 @@ public class UpdateCaseManager implements UpdateCaseListener{
 	@Override
 	public void caseSelected(String caseId) {
 		System.out.println("CASESELECTED" + caseId);
+		
+		User[] handlaggare = ud.find(new User(null,null,Role.HANDLAGGARE,null));
+		String[] users = new String[handlaggare.length];
+		for(int i = 0; i<handlaggare.length;i++){
+			
+			users[i] = handlaggare[i].getName();
+		}
+		
 		Case c = new Case();
 		c.setId(caseId);
 		Case theCase = cd.read(c);
@@ -78,7 +89,8 @@ public class UpdateCaseManager implements UpdateCaseListener{
 						theCase.getStatus(),
 						theCase.getDateOfReport(),
 						theCase.getAssignedTo(),
-						theCase.isNoInvestigation());
+						theCase.isNoInvestigation(),
+						users);
 		
 		aCase = theCase;
 		

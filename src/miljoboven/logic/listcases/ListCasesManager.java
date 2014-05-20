@@ -2,8 +2,10 @@ package miljoboven.logic.listcases;
 
 import miljoboven.backend.cases.Case;
 import miljoboven.backend.cases.CaseDAO;
+import miljoboven.client.Role;
 import miljoboven.client.listcases.ListCasesListener;
 import miljoboven.client.listcases.ListCasesSetter;
+import miljoboven.logic.login.LoginManager;
 import miljoboven.logic.updatecase.UpdateCaseManager;
 
 
@@ -12,10 +14,12 @@ public class ListCasesManager implements ListCasesListener{
 	private CaseDAO cd = new CaseDAO();
 	private ListCasesSetter listCasesSetter = null;
 	private UpdateCaseManager updateManager = null;
+	private LoginManager loginManager = null;
 	
 	public ListCasesManager(UpdateCaseManager updateManager){
 		
 		this.updateManager = updateManager;
+		
 	}
 	
 	public void setListCasesSetter(ListCasesSetter listCasesSetter){
@@ -27,7 +31,12 @@ public class ListCasesManager implements ListCasesListener{
 		
 		listCasesSetter.clearList();
 		
-		Case[] cases = cd.find(new Case());
+		Case aCase = new Case();
+		if(!loginManager.user.getRole().equals(Role.MILJOSAMORDNARE)) {
+			aCase.setNameOfUnit(loginManager.user.getUnit());
+		}
+		
+		Case[] cases = cd.find(aCase);
 		
 		for(Case c : cases){
 			listCasesSetter.addCase(c.getId(),c.getDateOfCrime(), c.getNameOfUnit(),c.getTypeOfCrime(),c.getLocationOfCrime(),c.getComments(),
@@ -35,6 +44,11 @@ public class ListCasesManager implements ListCasesListener{
 			
 		}
 		
+		
+	}
+	
+	public void setLoginManager(LoginManager loginManager){
+		this.loginManager = loginManager;
 		
 	}
 	

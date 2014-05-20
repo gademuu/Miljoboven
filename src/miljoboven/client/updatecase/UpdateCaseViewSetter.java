@@ -11,7 +11,7 @@ public interface UpdateCaseViewSetter {
 			String crimeLocation, String comments, String name,
 			String address, String phone, String[] uploadFiles,
 			String status, Date dateOfReport, String assign,
-			boolean investigate);
+			boolean investigate, String[] handlaggare);
 	
 
 }

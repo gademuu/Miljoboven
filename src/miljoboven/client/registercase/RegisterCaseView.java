@@ -17,32 +17,32 @@ public class RegisterCaseView extends JPanel {
     
     private JLabel l_headReporter = new JLabel("Uppgifter om anmälaren");
     
-    private JLabel l_name = new JLabel("Namn");
-    JTextField tf_name = new JTextField(20);
+    private JLabel l_name = new JLabel("   Namn");
+    JTextField tf_name = new JTextField(10);
     
     private JLabel l_address = new JLabel("Adress");
-    JTextField tf_address = new JTextField(20);
+    JTextField tf_address = new JTextField(10);
     
     private JLabel l_phone = new JLabel("Telefon");
-    JTextField tf_phone = new JTextField(20);
+    JTextField tf_phone = new JTextField(10);
     
     private JLabel l_headCrime = new JLabel("Uppgifter om brottet");
     
     private JLabel l_crimeDate = new JLabel("Datum for brott");
     JTextField tf_crimeDate = new JTextField("ÅÅÅÅ-MM-DD");
     
-    private JLabel l_crimeLocation = new JLabel("Plats för brott");
-    JTextField tf_crimeLocation = new JTextField(20);
+    private JLabel l_crimeLocation = new JLabel("Plats      ");
+    JTextField tf_crimeLocation = new JTextField(10);
     
-    private JLabel l_crimeType = new JLabel("Typ av brott");
-    JTextField tf_crimeType = new JTextField(20);
+    private JLabel l_crimeType = new JLabel("Typ         ");
+    JTextField tf_crimeType = new JTextField(10);
     
     
     private JLabel l_headComments = new JLabel("Övriga uppgifter");
     
-    JTextArea ta_comments = new JTextArea(10,20);
+    JTextArea ta_comments = new JTextArea(5,20);
     
-    private JLabel l_unit = new JLabel("Välj enhet för utredning");
+    private JLabel l_unit = new JLabel("Enhet     ");
     JComboBox c_unit = new JComboBox(new String[]{Unit.AVFALL,Unit.AVLOPPSHANTERING,Unit.IT,Unit.KLIMAT,Unit.MILJO,Unit.NATUR});
     
     // End of fields and labels
@@ -114,7 +114,7 @@ public class RegisterCaseView extends JPanel {
       // Head crime
       c = new GridBagConstraints(); 
       c.gridx = 0;
-      c.gridy = 4;
+      c.gridy = 5;
       c.anchor = GridBagConstraints.WEST;
       //c.fill = GridBagConstraints.BOTH;
       add(l_headCrime, c);
@@ -128,7 +128,7 @@ public class RegisterCaseView extends JPanel {
       crimeDateTextBoxPanel.add(l_crimeDate);
       crimeDateTextBoxPanel.add(tf_crimeDate);
       c.gridx = 0;
-      c.gridy = 5;
+      c.gridy = 6;
       c.anchor = GridBagConstraints.WEST;
       //c.fill = GridBagConstraints.BOTH;
       add(crimeDateTextBoxPanel, c);
@@ -140,7 +140,7 @@ public class RegisterCaseView extends JPanel {
       crimeLocationTextBoxPanel.add(l_crimeLocation);
       crimeLocationTextBoxPanel.add(tf_crimeLocation);
       c.gridx = 0;
-      c.gridy = 6;
+      c.gridy = 7;
       c.anchor = GridBagConstraints.WEST;
       //c.insets = new Insets(0,10,0,0);
       //c.fill = GridBagConstraints.BOTH;
@@ -153,7 +153,7 @@ public class RegisterCaseView extends JPanel {
       crimeTypeTextBoxPanel.add(l_crimeType);
       crimeTypeTextBoxPanel.add(tf_crimeType);
       c.gridx = 0;
-      c.gridy = 7;
+      c.gridy = 8;
       c.anchor = GridBagConstraints.WEST;
       //c.fill = GridBagConstraints.BOTH;
       add(crimeTypeTextBoxPanel, c);
@@ -183,8 +183,8 @@ public class RegisterCaseView extends JPanel {
       JPanel unitComboBoxPanel = new JPanel(new FlowLayout());
       unitComboBoxPanel.add(l_unit);
       unitComboBoxPanel.add(c_unit);
-      c.gridx = 1;
-      c.gridy = 7;
+      c.gridx = 0;
+      c.gridy = 9;
       c.anchor = GridBagConstraints.WEST;
       //c.fill = GridBagConstraints.BOTH;
       add( unitComboBoxPanel, c);
@@ -193,7 +193,6 @@ public class RegisterCaseView extends JPanel {
       // Buttons
       c = new GridBagConstraints();
       JPanel buttonPanel = new JPanel(new FlowLayout()); 
-      buttonPanel.setBorder(outline);
       buttonPanel.setBackground(Color.GRAY);
       okButton.addActionListener(actionListener); 
       cancelButton.addActionListener(actionListener); 

@@ -68,7 +68,6 @@ public class ListCasesView extends JPanel implements ListCasesSetter{//, ListSel
 	      //Navigate button panel
 	      c = new GridBagConstraints();
 	      JPanel buttonPanel = new JPanel(new FlowLayout()); 
-	      buttonPanel.setBorder(outline);
 	      buttonPanel.setBackground(Color.GRAY);
 	      logoutButton.addActionListener(actionListener); 
 	      buttonPanel.add(logoutButton); 

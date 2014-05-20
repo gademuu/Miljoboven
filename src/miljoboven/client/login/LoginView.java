@@ -22,12 +22,12 @@ public class LoginView extends JPanel{
 	 private JLabel l_head = new JLabel("Logga in");
 	
 	
-    private JLabel l_name = new JLabel("Användarnamn");
-    JTextField tf_name = new JTextField(20);
+    private JLabel l_name = new JLabel("Namn          ");
+    JTextField tf_name = new JTextField(10);
 
     
     private JLabel l_password = new JLabel("Lösenord   ");
-    JTextField tf_password = new JTextField(22);
+    JTextField tf_password = new JTextField(10);
     // End of text fields and labels
     
     // Buttons

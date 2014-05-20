@@ -187,10 +187,12 @@ public class CaseDAO extends BaseDAO {
 	        Case c1 = new Case();
 	        Case c2 = new Case();
 	        String assignedTo = criteria.getAssignedTo();
+	        String nameOfUnit = criteria.getNameOfUnit();
 	        String id = "";
 	       
 	        
 	        for (int i = 0; i < fileNames.length; i++) { 
+	        	
 	                if(fileNames[i].startsWith(CASE_FILE_PREFIX)){
 	                	System.out.println("File: " + fileNames[i]);
 	                    id = fileNames[i].substring(CASE_FILE_PREFIX.length(),fileNames[i].lastIndexOf(CASE_FILE_SUFFIX));
@@ -199,28 +201,31 @@ public class CaseDAO extends BaseDAO {
 	                	
 	                	c2 = read(c1);
 	                	
+	                	
+	                	
+	                	
 	                	if( assignedTo != null){
-	                		
-	                		
+	                		                		
 	                		if(assignedTo.equals(c2.getAssignedTo())){
 	                			cases.add(c2);
-	                			System.out.println("FIND: Assigned to NOT null. Adding: " + c2.getId());
-	                			
+	                			System.out.println("FIND: Assigned to NOT null. Adding: " + c2.getId());           
 	                		}
 	                		
+	                	} else if( nameOfUnit != null){
 	                		
-	                		
-	                	}else{
-	                		
+	                		if(nameOfUnit.equals(c2.getNameOfUnit())){
+	                			cases.add(c2);	                			
+	                			System.out.println("FIND: Name of Unit NOT null. Adding: " + c2.getId());    
+	                		}
+
+	                	} else {
 	                		cases.add(c2);
-	                		System.out.println("FIND: Assigned to IS null. Adding: " + c2.getId());
+	                		//System.out.println("FIND: Assigned to IS null. Adding: " + c2.getId());
 	                	}
-	                	
-	                
+
 	                }
-	                
 	            
-	        } 
+	        } // end for 
 	        
 	        
 	       Case[] arr = new Case[cases.size()];

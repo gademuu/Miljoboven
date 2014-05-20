@@ -24,6 +24,7 @@ public class Miljoboven {
     	ucm = new UpdateCaseManager();
     	lcm = new ListCasesManager(ucm);
     	lm = new LoginManager(lcm);
+    	lcm.setLoginManager(lm);
     	rcm = new RegisterCaseManager(lcm);
     	rum = new RegisterUserManager();
     	
@@ -40,6 +41,8 @@ public class Miljoboven {
         mainFrame.initialize(); 
     } 
       
+    
+    
       
       
       

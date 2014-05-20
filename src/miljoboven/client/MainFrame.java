@@ -65,8 +65,9 @@ public class MainFrame extends JFrame implements LoginSetter{
         this.lcl = lcl;
         
         
+        
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //setSize(1000,1000);
         setLocationRelativeTo(null); //This will center the JFrame in the middle of the screen
         Border outline = BorderFactory.createLineBorder(Color.black); //creating a border to highlight the component areas
         

@@ -86,6 +86,8 @@ public class UserDAO extends BaseDAO{
      */
 	public User[] find(User criteria){
 		
+		System.out.println("FIND CRITERIA : " + criteria.toString());
+		
 		  ArrayList<User> users = new ArrayList<>(); 
 		  
 	        String filePath = "."; 
@@ -95,17 +97,36 @@ public class UserDAO extends BaseDAO{
 	       
 	        
 	        for (int i = 0; i < fileNames.length; i++) { 
+	        	
+	        	if(criteria.getName() != null) {
+	        	
+	        	
 	                if(fileNames[i].startsWith(PREFIX + criteria.getName())){
 	                	System.out.println("File: " + fileNames[i]);
 	                	String userName = fileNames[i].substring(PREFIX.length(),fileNames[i].lastIndexOf(SUFFIX));
 	                	System.out.println("User: " + userName);
 	                	User u = new User(userName,"","","");
 	                	users.add(read(u));
-	                }
-	                
-	            
-	        } 
-	        
+	                } 
+	        	
+	        	} else if(criteria.getRole() != null) {
+	                	
+	                	 if(fileNames[i].startsWith(PREFIX)){
+	 	                	System.out.println("File: " + fileNames[i]);
+	 	                	String userName = fileNames[i].substring(PREFIX.length(),fileNames[i].lastIndexOf(SUFFIX));
+	 	                	System.out.println("User: " + userName);
+	 	                	User u = new User(userName,"","","");
+	 	                	u = read(u);
+	 	                	
+	 	                	if(criteria.getRole().equals(u.getRole())){
+	 	                		users.add(u);
+	 	                		System.out.println("FIND ADDING USER : " + u.toString());
+	 	                	}
+	        	
+	
+	                	 }  	
+	        	}
+	        } // end for      
 	        
 	        User[] arr = new User[users.size()];
 	        return users.toArray(arr); 

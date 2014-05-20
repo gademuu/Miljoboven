@@ -9,9 +9,10 @@ import miljoboven.logic.listcases.ListCasesManager;
 
 public class LoginManager implements LoginListener{
 	
-	private User user;
+   
 	private UserDAO userDAO = new UserDAO();
 	private LoginSetter loginSetter = null;
+    public User user;
 	private ListCasesManager lcm = null;
 	
 	public LoginManager(ListCasesManager lcm) {
